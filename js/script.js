@@ -1,54 +1,103 @@
-// let scene;
+import Plane from './classes/Plane.js';
+import Cockpit from './classes/Cockpit.js';
+
+{
+
+    let scene,
+        WIDTH, HEIGHT,
+        camera, fieldOfView, aspectRatio, nearPlane, farPlane, renderer, container;
+    let plane;
+    let cockpit;
+    let hemisphereLight, shadowLight, ambientLight;
 
 
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const init = () => {
 
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
 
-var geometry = new THREE.BoxGeometry(1, 1, 1);
-var material = new THREE.MeshBasicMaterial({ color: 0xe79d9f });
-var cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+        createScene();
+        // createPlane();
+        createCockpit();
 
-camera.position.z = 3;
+        loop();
+    };
 
-var animate = function () {
-    requestAnimationFrame(animate);
+    const createPlane = () => {
+        plane = new Plane();
+        plane.mesh.position.y = 0;
+        scene.add(plane.mesh);
+    }
 
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+    const createCockpit = () => {
+        cockpit = new Cockpit();
+        cockpit.mesh.position.y = 1;
+        scene.add(cockpit.mesh);
+    }
 
-    renderer.render(scene, camera);
-};
+    const createScene = () => {
 
-animate();
 
-// const init = () => {
-//     createScene();
-// }
 
-// const createScene = () => {
-//     WIDTH = window.innerWidth;
-//     HEIGHT = window.innerHeight;
-//     scene = new THREE.Scene();
-//     aspectRatio = WIDTH / HEIGHT;
-//     fieldOfView = 60;
-//     camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
-//     camera.position.x = 0;
-//     camera.position.y = 100;
-//     camera.position.z = 200;
-//     renderer = new THREE.WebGLRenderer({
-//         alpha: true,
-//         antialias: true
-//     });
-//     renderer.setSize(WIDTH, HEIGHT);
-//     renderer.shadowMap.enabled = true;
+        WIDTH = window.innerWidth;
+        HEIGHT = window.innerHeight;
+        scene = new THREE.Scene();
+        aspectRatio = WIDTH / HEIGHT;
+        fieldOfView = 60;
+        nearPlane = 1;
+        farPlane = 10000;
+        camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
+        camera.position.x = 0;
+        camera.position.y = 100;
+        camera.position.z = 200;
 
-//     container = document.getElementById('world');
-//     container.appendChild(renderer.domElement);
-// };
+        renderer = new THREE.WebGLRenderer({
+            alpha: true,
+            antialias: true
+        });
+        renderer.setSize(WIDTH, HEIGHT);
+        renderer.shadowMap.enabled = true;
 
-// init();
+        document.body.appendChild(WEBVR.createButton(renderer));
+        renderer.vr.enabled = true;
+        renderer.setAnimationLoop(function () {
+            renderer.render(scene, camera);
+        });
+
+        container = document.getElementById('world');
+        container.appendChild(renderer.domElement);
+    };
+
+    // const createLight = () => {
+
+    //     hemisphereLight = new THREE.HemisphereLight(0xaaaaaa, 0x000000, .9);
+    //     shadowLight = new THREE.DirectionalLight(0xffffff, .9);
+    //     ambientLight = new THREE.AmbientLight(0xdc8874, .4);
+
+
+    //     shadowLight.position.set(150, 350, 350);
+
+    //     // shadowLight.castShadow = true;
+
+    //     // shadowLight.shadow.camera.left = -400;
+    //     // shadowLight.shadow.camera.right = 400;
+    //     // shadowLight.shadow.camera.top = 400;
+    //     // shadowLight.shadow.camera.bottom = -400;
+    //     // shadowLight.shadow.camera.near = 1;
+    //     // shadowLight.shadow.camera.far = 1000;
+    //     // shadowLight.shadow.mapSize.width = 2048;
+    //     // shadowLight.shadow.mapSize.height = 2048;
+    //     scene.add(hemisphereLight);
+    //     scene.add(shadowLight);
+    //     scene.add(ambientLight);
+    // }
+
+
+
+    const loop = () => {
+        requestAnimationFrame(loop);
+
+
+        renderer.render(scene, camera);
+    };
+
+    init();
+}
