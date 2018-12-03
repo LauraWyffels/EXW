@@ -54,12 +54,8 @@ import Cockpit from './classes/Cockpit.js';
             objLoader.setPath('../assets/objects/');
             objLoader.load('plane.obj', (object) => {
                 scene.add(object);
-                object.scale.y = 0.12;
-                object.scale.x = 0.12;
-                object.scale.z = -0.12;
-                object.position.y = -9;
-                object.position.x = -1;
-                object.position.z = -88;
+                object.scale.set(0.12, 0.12, -0.12);
+                object.position.set(-1, -9, -88);
                 cockpit = object;
             });
         });
@@ -67,7 +63,7 @@ import Cockpit from './classes/Cockpit.js';
 
     const loop = () => {
         if (sky) {
-            sky.position.z += 1;
+            sky.position.z += .1;
         }
         renderer.render(scene, camera);
     }
