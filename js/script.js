@@ -25,9 +25,13 @@ import Cockpit from './classes/Cockpit.js';
 
             const objLoader = new THREE.OBJLoader();
             objLoader.setMaterials(materials);
+ 
             objLoader.setPath('../assets/objects/');
             objLoader.load('airplane_inside.obj', (object) => {
                 scene.add(object);
+                object.scale.y = -2;
+                object.scale.x = 2;
+                object.scale.z = 2;
             });
         });
     }
@@ -48,19 +52,20 @@ import Cockpit from './classes/Cockpit.js';
             objLoader.setPath('../assets/objects/');
             objLoader.load('plane.obj', (object) => {
                 scene.add(object);
+                object.scale.y = 0.09;
+                object.scale.x = 0.12;
+                object.scale.z = -0.1;
+                object.position.y = -10;
+                object.position.x = -1;
+                object.position.z = -90;
             });
         });
     }
 
-    const loop = () => {
-        requestAnimationFrame(loop);
-        renderer.render(scene, camera);
-    };
-
     const createScene = () => {
         scene = new THREE.Scene();
         nearPlane = 1;
-        farPlane = 10000;
+        farPlane = 1000;
         camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
 
         renderer = new THREE.WebGLRenderer({
@@ -69,7 +74,7 @@ import Cockpit from './classes/Cockpit.js';
         });
         renderer.setSize(WIDTH, HEIGHT);
         renderer.autoClear = false;
-        renderer.setClearColor(0x000000, 0.0);
+        renderer.setClearColor(0xff0000, 0.0);
         renderer.shadowMap.enabled = true;
 
         // Enable VR 
@@ -85,10 +90,8 @@ import Cockpit from './classes/Cockpit.js';
     const createSky = () => {
         const skyGeometry = new THREE.BoxGeometry(WIDTH, HEIGHT, 300, 10, 2, 10);
         const skyMaterial = new THREE.MeshPhongMaterial({
-            color: 0xff0000,
+            color: 0x9adeff,
             wireframe: false,
-            // opacity: 1,
-            // transparent: true,
             side: THREE.BackSide
         });
         const sky = new THREE.Mesh(skyGeometry, skyMaterial);
@@ -100,17 +103,9 @@ import Cockpit from './classes/Cockpit.js';
         shadowLight = new THREE.DirectionalLight(0xffffff, .9);
         ambientLight = new THREE.AmbientLight(0xdc8874, .4);
 
-        shadowLight.position.set(150, 350, 350);
+        shadowLight.position.set(350, 350, 350);
         shadowLight.castShadow = true;
 
-        // shadowLight.shadow.camera.left = -400;
-        // shadowLight.shadow.camera.right = 400;
-        // shadowLight.shadow.camera.top = 400;
-        // shadowLight.shadow.camera.bottom = -400;
-        // shadowLight.shadow.camera.near = 1;
-        // shadowLight.shadow.camera.far = 1000;
-        // shadowLight.shadow.mapSize.width = 2048;
-        // shadowLight.shadow.mapSize.height = 2048;
         scene.add(hemisphereLight);
         scene.add(shadowLight);
         scene.add(ambientLight);
@@ -120,10 +115,8 @@ import Cockpit from './classes/Cockpit.js';
         createScene();
         createSky();
         createPlane();
-        createLight();
         createCockpit();
-
-        loop();
+        createLight();
     };
 
     init();
