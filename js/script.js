@@ -33,9 +33,23 @@ import Cockpit from './classes/Cockpit.js';
     }
 
     const createCockpit = () => {
-        cockpit = new Cockpit();
-        cockpit.mesh.position.y = 1;
-        scene.add(cockpit.mesh);
+        // cockpit = new Cockpit();
+        // cockpit.mesh.position.y = 1;
+        // scene.add(cockpit.mesh);
+
+        const mtlLoader = new THREE.MTLLoader();
+        mtlLoader.setTexturePath('../assets/objects/');
+        mtlLoader.setPath('../assets/objects/');
+        mtlLoader.load('plane.mtl', (materials) => {
+            materials.preload();
+
+            const objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.setPath('../assets/objects/');
+            objLoader.load('plane.obj', (object) => {
+                scene.add(object);
+            });
+        });
     }
 
     const loop = () => {
@@ -107,7 +121,7 @@ import Cockpit from './classes/Cockpit.js';
         createSky();
         createPlane();
         createLight();
-        // createCockpit();
+        createCockpit();
 
         loop();
     };
