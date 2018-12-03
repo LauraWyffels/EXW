@@ -8,7 +8,7 @@ import Cockpit from './classes/Cockpit.js';
         fieldOfView = 75;
 
     let scene, camera, nearPlane, farPlane, renderer, container;
-    let plane, cockpit;
+    let plane, cockpit, sky;
 
     let hemisphereLight, shadowLight, ambientLight;
 
@@ -35,6 +35,7 @@ import Cockpit from './classes/Cockpit.js';
                 plane = object;
             });
         });
+
     }
 
     const createCockpit = () => {
@@ -65,13 +66,16 @@ import Cockpit from './classes/Cockpit.js';
     }
 
     const loop = () => {
+        if (sky) {
+            sky.position.z += 1;
+        }
         renderer.render(scene, camera);
     }
 
     const createScene = () => {
         scene = new THREE.Scene();
         nearPlane = 1;
-        farPlane = 100000;
+        farPlane = 10000;
         camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
 
         renderer = new THREE.WebGLRenderer({
@@ -93,7 +97,7 @@ import Cockpit from './classes/Cockpit.js';
 
     const createSky = () => {
         const skyGeometry = new THREE.CubeGeometry(50000, 1000, 10000);
-        const cubeMaterials =  [
+        const skyMaterials =  [
             new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/front.JPG"), side: THREE.DoubleSide}),
             new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/back.JPG"), side: THREE.DoubleSide}),
             new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/up.JPG"), side: THREE.DoubleSide}),
@@ -102,9 +106,9 @@ import Cockpit from './classes/Cockpit.js';
             new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/left.JPG"), side: THREE.DoubleSide})
         ]
 
-        const cubeMaterial = new THREE.MeshFaceMaterial(cubeMaterials);
-        const cube = new THREE.Mesh(skyGeometry, cubeMaterial);
-        scene.add(cube);
+        const skyMaterial = new THREE.MeshFaceMaterial(skyMaterials);
+        sky = new THREE.Mesh(skyGeometry, skyMaterial);
+        scene.add(sky);
     }
 
     const createLight = () => {
