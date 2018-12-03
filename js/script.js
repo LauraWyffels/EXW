@@ -32,6 +32,7 @@ import Cockpit from './classes/Cockpit.js';
                 object.scale.y = -2;
                 object.scale.x = 2;
                 object.scale.z = 2;
+                plane = object;
             });
         });
     }
@@ -52,20 +53,25 @@ import Cockpit from './classes/Cockpit.js';
             objLoader.setPath('../assets/objects/');
             objLoader.load('plane.obj', (object) => {
                 scene.add(object);
-                object.scale.y = 0.09;
+                object.scale.y = 0.12;
                 object.scale.x = 0.12;
-                object.scale.z = -0.1;
-                object.position.y = -10;
+                object.scale.z = -0.12;
+                object.position.y = -9;
                 object.position.x = -1;
-                object.position.z = -90;
+                object.position.z = -88;
+                cockpit = object;
             });
         });
+    }
+
+    const loop = () => {
+        renderer.render(scene, camera);
     }
 
     const createScene = () => {
         scene = new THREE.Scene();
         nearPlane = 1;
-        farPlane = 1000;
+        farPlane = 100000;
         camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
 
         renderer = new THREE.WebGLRenderer({
@@ -81,27 +87,30 @@ import Cockpit from './classes/Cockpit.js';
         const $container = document.getElementById(`world`);
         document.body.appendChild(WEBVR.createButton(renderer));
         renderer.vr.enabled = true;
-        renderer.setAnimationLoop(() => {
-            renderer.render(scene, camera);
-        });
+        renderer.setAnimationLoop(() => loop());
         $container.appendChild(renderer.domElement);
     };
 
     const createSky = () => {
-        const skyGeometry = new THREE.BoxGeometry(WIDTH, HEIGHT, 300, 10, 2, 10);
-        const skyMaterial = new THREE.MeshPhongMaterial({
-            color: 0x9adeff,
-            wireframe: false,
-            side: THREE.BackSide
-        });
-        const sky = new THREE.Mesh(skyGeometry, skyMaterial);
-        scene.add(sky);
+        const skyGeometry = new THREE.CubeGeometry(50000, 1000, 10000);
+        const cubeMaterials =  [
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/front.JPG"), side: THREE.DoubleSide}),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/back.JPG"), side: THREE.DoubleSide}),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/up.JPG"), side: THREE.DoubleSide}),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/down.JPG"), side: THREE.DoubleSide}),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/right.JPG"), side: THREE.DoubleSide}),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/left.JPG"), side: THREE.DoubleSide})
+        ]
+
+        const cubeMaterial = new THREE.MeshFaceMaterial(cubeMaterials);
+        const cube = new THREE.Mesh(skyGeometry, cubeMaterial);
+        scene.add(cube);
     }
 
     const createLight = () => {
-        hemisphereLight = new THREE.HemisphereLight(0xaaaaaa, 0x000000, .9);
+        hemisphereLight = new THREE.HemisphereLight(0xaaaaaa, 0x000000, .4);
         shadowLight = new THREE.DirectionalLight(0xffffff, .9);
-        ambientLight = new THREE.AmbientLight(0xdc8874, .4);
+        ambientLight = new THREE.AmbientLight(0xaaaadd, .3);
 
         shadowLight.position.set(350, 350, 350);
         shadowLight.castShadow = true;
