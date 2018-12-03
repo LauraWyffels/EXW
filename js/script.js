@@ -2,7 +2,7 @@ import Plane from './classes/Plane.js';
 import Cockpit from './classes/Cockpit.js';
 
 {
-    const WIDTH = window.innerWidth, 
+    const WIDTH = window.innerWidth,
         HEIGHT = window.innerHeight,
         aspectRatio = WIDTH / HEIGHT,
         fieldOfView = 75;
@@ -28,14 +28,28 @@ import Cockpit from './classes/Cockpit.js';
             objLoader.setPath('../assets/objects/');
             objLoader.load('airplane_inside.obj', (object) => {
                 scene.add(object);
-        });
+            });
         });
     }
 
     const createCockpit = () => {
-        cockpit = new Cockpit();
-        cockpit.mesh.position.y = 1;
-        scene.add(cockpit.mesh);
+        // cockpit = new Cockpit();
+        // cockpit.mesh.position.y = 1;
+        // scene.add(cockpit.mesh);
+
+        const mtlLoader = new THREE.MTLLoader();
+        mtlLoader.setTexturePath('../assets/objects/');
+        mtlLoader.setPath('../assets/objects/');
+        mtlLoader.load('plane.mtl', (materials) => {
+            materials.preload();
+
+            const objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.setPath('../assets/objects/');
+            objLoader.load('plane.obj', (object) => {
+                scene.add(object);
+            });
+        });
     }
 
     const loop = () => {
@@ -60,7 +74,7 @@ import Cockpit from './classes/Cockpit.js';
 
         // Enable VR 
         const $container = document.getElementById(`world`);
-        document.body.appendChild(WEBVR.createButton( renderer ));
+        document.body.appendChild(WEBVR.createButton(renderer));
         renderer.vr.enabled = true;
         renderer.setAnimationLoop(() => {
             renderer.render(scene, camera);
@@ -107,8 +121,8 @@ import Cockpit from './classes/Cockpit.js';
         createSky();
         createPlane();
         createLight();
-        // createCockpit();
-        
+        createCockpit();
+
         loop();
     };
 
