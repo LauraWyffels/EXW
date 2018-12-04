@@ -55,7 +55,7 @@ import Cockpit from './classes/Cockpit.js';
             objLoader.load('plane.obj', (object) => {
                 scene.add(object);
                 object.scale.set(0.12, 0.12, -0.12);
-                object.position.set(-1, -9, -88);
+                object.position.set(-1, -20, -88);
                 cockpit = object;
             });
         });
@@ -71,9 +71,8 @@ import Cockpit from './classes/Cockpit.js';
     const createScene = () => {
         scene = new THREE.Scene();
         nearPlane = 1;
-        farPlane = 10000;
+        farPlane = 100000;
         camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
-
         renderer = new THREE.WebGLRenderer({
             alpha: true,
             antialias: true
@@ -92,7 +91,7 @@ import Cockpit from './classes/Cockpit.js';
     };
 
     const createSky = () => {
-        const skyGeometry = new THREE.CubeGeometry(10000, 10000, 10000);
+        const skyGeometry = new THREE.CubeGeometry(100000, 10000, 100000);
         const skyMaterials =  [
             new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/front.JPG"), side: THREE.DoubleSide}),
             new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/back.JPG"), side: THREE.DoubleSide}),
