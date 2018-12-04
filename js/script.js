@@ -7,8 +7,9 @@ import Cockpit from './classes/Cockpit.js';
         aspectRatio = WIDTH / HEIGHT,
         fieldOfView = 75;
 
-    let scene, camera, nearPlane, farPlane, renderer, container;
+    let scene, camera, nearPlane, farPlane, renderer, body;
     let plane, cockpit, sky;
+
 
     let hemisphereLight, shadowLight, ambientLight;
 
@@ -62,10 +63,19 @@ import Cockpit from './classes/Cockpit.js';
     }
 
     const loop = () => {
-        // if (sky) {
-        //     sky.position.z += .1;
-        // }
         renderer.render(scene, camera);
+
+        // test walking 
+        if(body.position.z > 0) {
+            body.position.z -= .15;
+        } 
+    }
+
+    const createBody = camera => {
+        body = new THREE.Object3D;
+        scene.add(body);
+        body.position.z = 100;
+        body.add(camera);
     }
 
     const createScene = () => {
@@ -73,6 +83,8 @@ import Cockpit from './classes/Cockpit.js';
         nearPlane = 1;
         farPlane = 100000;
         camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
+        createBody(camera);
+
         renderer = new THREE.WebGLRenderer({
             alpha: true,
             antialias: true
@@ -87,7 +99,7 @@ import Cockpit from './classes/Cockpit.js';
         document.body.appendChild(WEBVR.createButton(renderer));
         renderer.vr.enabled = true;
         renderer.setAnimationLoop(() => loop());
-        $container.appendChild(renderer.domElement);
+        $container.appendChild(renderer.domElement);  
     };
 
     const createSky = () => {
