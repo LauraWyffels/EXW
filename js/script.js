@@ -1,16 +1,20 @@
 import Plane from './classes/Plane.js';
 import Cockpit from './classes/Cockpit.js';
 import ObjectLoader from './classes/ObjectLoader.js';
+import Clock from './classes/Clock.js';
 
 {
     const WIDTH = window.innerWidth,
         HEIGHT = window.innerHeight
 
     let scene, camera, renderer, body;
-
-    let cockpit, planeInside;
+    let cockpit, planeInside, sky, clock;
 
     let hemisphereLight, shadowLight, ambientLight;
+
+    const createClock = () => {
+        clock = new Clock();
+     }
 
     const createPlane = () => {
         const planeScaleSize = {
@@ -88,18 +92,18 @@ import ObjectLoader from './classes/ObjectLoader.js';
         document.body.appendChild(WEBVR.createButton(renderer));
         renderer.vr.enabled = true;
         renderer.setAnimationLoop(() => loop());
-        $container.appendChild(renderer.domElement);  
+        $container.appendChild(renderer.domElement);
     };
 
     const createSky = () => {
         const skyGeometry = new THREE.CubeGeometry(100000, 10000, 100000);
-        const skyMaterials =  [
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/front.JPG"), side: THREE.DoubleSide}),
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/back.JPG"), side: THREE.DoubleSide}),
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/up.JPG"), side: THREE.DoubleSide}),
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/down.JPG"), side: THREE.DoubleSide}),
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/right.JPG"), side: THREE.DoubleSide}),
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/left.JPG"), side: THREE.DoubleSide})
+        const skyMaterials = [
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/front.JPG"), side: THREE.DoubleSide }),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/back.JPG"), side: THREE.DoubleSide }),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/up.JPG"), side: THREE.DoubleSide }),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/down.JPG"), side: THREE.DoubleSide }),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/right.JPG"), side: THREE.DoubleSide }),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/left.JPG"), side: THREE.DoubleSide })
         ]
 
         const skyMaterial = new THREE.MeshFaceMaterial(skyMaterials);
@@ -120,12 +124,14 @@ import ObjectLoader from './classes/ObjectLoader.js';
         scene.add(ambientLight);
     }
 
+
     const init = () => {
         createScene();
         createSky();
         createPlane();
         createCockpit();
         createLight();
+        createClock();
     };
 
     init();
