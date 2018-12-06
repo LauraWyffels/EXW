@@ -1,5 +1,6 @@
 import Plane from './classes/Plane.js';
 import Clock from './classes/Clock.js';
+import Explosion from './classes/Explosion.js';
 
 {
     const WIDTH = window.innerWidth,
@@ -16,6 +17,11 @@ import Clock from './classes/Clock.js';
 
     const createClock = () => {
         clock = new Clock();
+
+    }
+
+    const createExplosion = () => {
+        clock = new Explosion();
 
     }
 
@@ -137,6 +143,7 @@ import Clock from './classes/Clock.js';
         createCockpit();
         createLight();
         createClock();
+        createExplosion();
     };
 
     init();
