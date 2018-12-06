@@ -1,6 +1,7 @@
 import Plane from './classes/Plane.js';
 // import ObjectLoader from './classes/ObjectLoader.js';
 import Clock from './classes/Clock.js';
+import Explosion from './classes/Explosion.js';
 
 {
     const WIDTH = window.innerWidth,
@@ -14,6 +15,11 @@ import Clock from './classes/Clock.js';
     const createClock = () => {
         clock = new Clock();
      }
+
+    const createExplosion = () => {
+        clock = new Explosion();
+
+    }
 
     const createPlane = () => {
         const planeScaleSize = {
@@ -138,6 +144,7 @@ import Clock from './classes/Clock.js';
         createPlane();
         createLight();
         createClock();
+        createExplosion();
     };
 
     init();
