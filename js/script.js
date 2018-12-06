@@ -1,24 +1,21 @@
 import Plane from './classes/Plane.js';
+import Cockpit from './classes/Cockpit.js';
+import ObjectLoader from './classes/ObjectLoader.js';
 import Clock from './classes/Clock.js';
 import Explosion from './classes/Explosion.js';
 
 {
     const WIDTH = window.innerWidth,
-        HEIGHT = window.innerHeight,
-        aspectRatio = WIDTH / HEIGHT,
-        fieldOfView = 75;
+        HEIGHT = window.innerHeight
 
-    let scene, camera, nearPlane, farPlane, renderer, body;
-    let plane, cockpit, sky, clock;
-
+    let scene, camera, renderer, body;
+    let cockpit, planeInside, sky, clock;
 
     let hemisphereLight, shadowLight, ambientLight;
 
-
     const createClock = () => {
         clock = new Clock();
-
-    }
+     }
 
     const createExplosion = () => {
         clock = new Explosion();
@@ -26,66 +23,64 @@ import Explosion from './classes/Explosion.js';
     }
 
     const createPlane = () => {
-        const mtlLoader = new THREE.MTLLoader();
-        mtlLoader.setTexturePath('../assets/objects/');
-        mtlLoader.setPath('../assets/objects/');
-        mtlLoader.load('airplane_inside.mtl', (materials) => {
-            materials.preload();
-
-            const objLoader = new THREE.OBJLoader();
-            objLoader.setMaterials(materials);
-
-            objLoader.setPath('../assets/objects/');
-            objLoader.load('airplane_inside.obj', (object) => {
-                scene.add(object);
-                object.scale.y = -2;
-                object.scale.x = 2;
-                object.scale.z = 2;
-                plane = object;
-            });
-        });
-
+        const planeScaleSize = {
+            x: 2,
+            y: -2,
+            z: 2
+        }
+        const objectLoader = new ObjectLoader(`../assets/objects/`, `airplane_inside.mtl`, `airplane_inside.obj`, planeScaleSize);
+        setTimeout(() => {
+            planeInside = objectLoader.object;
+            scene.add(planeInside);
+        }, 2000);
     }
 
     const createCockpit = () => {
-        const mtlLoader = new THREE.MTLLoader();
-        mtlLoader.setTexturePath('../assets/objects/');
-        mtlLoader.setPath('../assets/objects/');
-        mtlLoader.load('plane.mtl', (materials) => {
-            materials.preload();
+        const cockPitSizes = {
+            x: .12,
+            y: .12,
+            z: -.12
+        }
+        const cockPitPosition = {
+            x: -1,
+            y: -16,
+            z: -112
+        }
 
-            const objLoader = new THREE.OBJLoader();
-            objLoader.setMaterials(materials);
-            objLoader.setPath('../assets/objects/');
-            objLoader.load('plane.obj', (object) => {
-                scene.add(object);
-                object.scale.set(0.12, 0.12, -0.12);
-                object.position.set(-1, -20, -88);
-                cockpit = object;
-            });
-        });
+        const objectLoader = new ObjectLoader(`../assets/objects/`, `plane.mtl`, `plane.obj`, cockPitSizes, cockPitPosition);
+        setTimeout(() => {
+            cockpit = objectLoader.object;
+            scene.add(cockpit);
+        }, 2000);
     }
 
     const loop = () => {
         renderer.render(scene, camera);
 
         // test walking 
-        if (body.position.z > 0) {
+        if(body.position.z > -130) {
             body.position.z -= .15;
-        }
+        } 
+
+        // TEST COCKPIT POSITION
+        // if(cockpit) {
+        //     cockpit.position.y += 1;
+        // }
     }
 
     const createBody = camera => {
         body = new THREE.Object3D;
         scene.add(body);
-        body.position.z = 100;
+        // body.position.z = 100;
         body.add(camera);
     }
 
     const createScene = () => {
         scene = new THREE.Scene();
-        nearPlane = 1;
-        farPlane = 100000;
+        const nearPlane = 1;
+        const farPlane = 100000;
+        const aspectRatio = WIDTH / HEIGHT;
+        const fieldOfView = 75;
         camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
         createBody(camera);
 
@@ -118,7 +113,7 @@ import Explosion from './classes/Explosion.js';
         ]
 
         const skyMaterial = new THREE.MeshFaceMaterial(skyMaterials);
-        sky = new THREE.Mesh(skyGeometry, skyMaterial);
+        const sky = new THREE.Mesh(skyGeometry, skyMaterial);
         scene.add(sky);
     }
 
