@@ -1,5 +1,4 @@
 import Plane from './classes/Plane.js';
-import Cockpit from './classes/Cockpit.js';
 import ObjectLoader from './classes/ObjectLoader.js';
 import Clock from './classes/Clock.js';
 
@@ -8,7 +7,7 @@ import Clock from './classes/Clock.js';
         HEIGHT = window.innerHeight
 
     let scene, camera, renderer, body;
-    let cockpit, planeInside, sky, clock;
+    let plane, sky, clock;
 
     let hemisphereLight, shadowLight, ambientLight;
 
@@ -22,50 +21,45 @@ import Clock from './classes/Clock.js';
             y: -2,
             z: 2
         }
-        const objectLoader = new ObjectLoader(`../assets/objects/`, `airplane_inside.mtl`, `airplane_inside.obj`, planeScaleSize);
+        const planePosition = {
+            x: 0,
+            y: 0,
+            z: 0
+        }
+
+        const planeObject = new Plane(`../assets/objects/`, `airplane_inside.mtl`, `airplane_inside.obj`, planeScaleSize, planePosition);
         setTimeout(() => {
-            planeInside = objectLoader.object;
-            scene.add(planeInside);
-        }, 2000);
+            plane = planeObject.object;
+            scene.add(plane);
+        }, 5000);
     }
 
     const createCockpit = () => {
         const cockPitSizes = {
-            x: .12,
-            y: .12,
+            x: .084,
+            y: .084,
             z: -.12
         }
         const cockPitPosition = {
-            x: -1,
-            y: -16,
-            z: -112
+            x: 0,
+            y: -9.5,
+            z: -111
         }
 
         const objectLoader = new ObjectLoader(`../assets/objects/`, `plane.mtl`, `plane.obj`, cockPitSizes, cockPitPosition);
         setTimeout(() => {
             cockpit = objectLoader.object;
             scene.add(cockpit);
-        }, 2000);
+        }, 5000);
     }
 
-    const loop = () => {
+    const loop = () => { 
         renderer.render(scene, camera);
-
-        // test walking 
-        if(body.position.z > -130) {
-            body.position.z -= .15;
-        } 
-
-        // TEST COCKPIT POSITION
-        // if(cockpit) {
-        //     cockpit.position.y += 1;
-        // }
     }
 
     const createBody = camera => {
         body = new THREE.Object3D;
         scene.add(body);
-        // body.position.z = 100;
         body.add(camera);
     }
 
@@ -128,8 +122,8 @@ import Clock from './classes/Clock.js';
     const init = () => {
         createScene();
         createSky();
+        // createCockpit();
         createPlane();
-        createCockpit();
         createLight();
         createClock();
     };

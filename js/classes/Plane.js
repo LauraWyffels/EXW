@@ -1,16 +1,22 @@
-class Plane {
-    constructor() {
-        const geom = new THREE.CylinderGeometry(600, 600, 800, 40, 10);
-        geom.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI / 2));
+import ObjectLoader from './ObjectLoader.js';
 
-        const mat = new THREE.MeshBasicMaterial({
-            color: 0xf2d4ca,
-            transparent: true,
-            opacity: .6,
-            flatShading: true,
-            wireframe: true
-        });
-        this.mesh = new THREE.Mesh(geom, mat);
+class Plane {
+    constructor(path, material, objectFile, planeScaleSize = {}, planePosition = {}) {
+        this.path = path;
+        this.material = material;
+        this.objectFile = objectFile;
+        this.planeScaleSize = planeScaleSize;
+        this.planePosition = planePosition;
+
+        this.object = this.loadPlaneObject();        
+    }
+
+    loadPlaneObject() {
+        const objectLoader = new ObjectLoader(`../assets/objects/`, `airplane_inside.mtl`, `airplane_inside.obj`, this.planeScaleSize, this.planePosition);
+        setTimeout(() => {
+            this.object = objectLoader.object;
+            return this.object;
+        }, 1000);
     }
 
 };
