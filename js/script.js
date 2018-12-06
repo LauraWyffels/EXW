@@ -26,7 +26,7 @@ import Cockpit from './classes/Cockpit.js';
 
             const objLoader = new THREE.OBJLoader();
             objLoader.setMaterials(materials);
- 
+
             objLoader.setPath('../assets/objects/');
             objLoader.load('airplane_inside.obj', (object) => {
                 scene.add(object);
@@ -66,9 +66,9 @@ import Cockpit from './classes/Cockpit.js';
         renderer.render(scene, camera);
 
         // test walking 
-        if(body.position.z > 0) {
+        if (body.position.z > 0) {
             body.position.z -= .15;
-        } 
+        }
     }
 
     const createBody = camera => {
@@ -99,18 +99,18 @@ import Cockpit from './classes/Cockpit.js';
         document.body.appendChild(WEBVR.createButton(renderer));
         renderer.vr.enabled = true;
         renderer.setAnimationLoop(() => loop());
-        $container.appendChild(renderer.domElement);  
+        $container.appendChild(renderer.domElement);
     };
 
     const createSky = () => {
         const skyGeometry = new THREE.CubeGeometry(100000, 10000, 100000);
-        const skyMaterials =  [
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/front.JPG"), side: THREE.DoubleSide}),
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/back.JPG"), side: THREE.DoubleSide}),
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/up.JPG"), side: THREE.DoubleSide}),
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/down.JPG"), side: THREE.DoubleSide}),
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/right.JPG"), side: THREE.DoubleSide}),
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/left.JPG"), side: THREE.DoubleSide})
+        const skyMaterials = [
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/front.JPG"), side: THREE.DoubleSide }),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/back.JPG"), side: THREE.DoubleSide }),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/up.JPG"), side: THREE.DoubleSide }),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/down.JPG"), side: THREE.DoubleSide }),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/right.JPG"), side: THREE.DoubleSide }),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/left.JPG"), side: THREE.DoubleSide })
         ]
 
         const skyMaterial = new THREE.MeshFaceMaterial(skyMaterials);
