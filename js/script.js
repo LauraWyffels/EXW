@@ -1,5 +1,5 @@
 import Plane from './classes/Plane.js';
-import ObjectLoader from './classes/ObjectLoader.js';
+// import ObjectLoader from './classes/ObjectLoader.js';
 import Clock from './classes/Clock.js';
 
 {
@@ -27,14 +27,6 @@ import Clock from './classes/Clock.js';
             z: 0
         }
 
-        const planeObject = new Plane(`../assets/objects/`, `airplane_inside.mtl`, `airplane_inside.obj`, planeScaleSize, planePosition);
-        setTimeout(() => {
-            plane = planeObject.object;
-            scene.add(plane);
-        }, 5000);
-    }
-
-    const createCockpit = () => {
         const cockPitSizes = {
             x: .084,
             y: .084,
@@ -46,11 +38,32 @@ import Clock from './classes/Clock.js';
             z: -111
         }
 
-        const objectLoader = new ObjectLoader(`../assets/objects/`, `plane.mtl`, `plane.obj`, cockPitSizes, cockPitPosition);
+        const planeBodyObjectDetails = {
+            path: `../assets/objects/`, 
+            material: `airplane_inside.mtl`, 
+            objectFile: `airplane_inside.obj`, 
+            scaleSize: planeScaleSize, 
+            position: planePosition
+        }
+
+        const cockpitObjectDetails = {
+            path: `../assets/objects/`, 
+            material: `plane.mtl`, 
+            objectFile: `plane.obj`, 
+            scaleSize: cockPitSizes, 
+            position: cockPitPosition
+        }
+
+        const planeObject = new Plane(planeBodyObjectDetails, cockpitObjectDetails);
         setTimeout(() => {
-            cockpit = objectLoader.object;
-            scene.add(cockpit);
-        }, 5000);
+            // --------------------------------------- Korter proberen doen ---------------------------------------
+            plane = new THREE.Group();
+            const planeBody = planeObject.plane;
+            plane.add(planeBody);
+            const cockpit = planeObject.cockpit;
+            plane.add(cockpit);
+            scene.add(plane);
+        }, 2000);
     }
 
     const loop = () => { 
@@ -122,7 +135,6 @@ import Clock from './classes/Clock.js';
     const init = () => {
         createScene();
         createSky();
-        // createCockpit();
         createPlane();
         createLight();
         createClock();

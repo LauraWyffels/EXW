@@ -1,14 +1,14 @@
 class ObjectLoader {
-    constructor(path, material, objectFile, {x: scaleX = 1, y: scaleY = 1, z: scaleZ = 1} = {}, {x: posX = 0, y: posY = 0, z: posZ = 0} = {}) {
+    constructor({path, material, objectFile, scaleSize = {x: x = 1, y: y = 1, z: z = 1} = {}, position = {x: x = 0, y: y = 0, z: z = 0} = {}} ) {
         this.path = path;
         this.material = material;
         this.objectFile = objectFile;
-        this.scaleX = scaleX;
-        this.scaleY = scaleY;
-        this.scaleZ = scaleZ;
-        this.posX = posX;
-        this.posY = posY;
-        this.posZ = posZ;
+        this.scaleX = scaleSize.x;
+        this.scaleY = scaleSize.y;
+        this.scaleZ = scaleSize.z;
+        this.posX = position.x;
+        this.posY = position.y;
+        this.posZ = position.z;
 
         this.mtlLoader = new THREE.MTLLoader();
         this.objLoader = new THREE.OBJLoader(); 

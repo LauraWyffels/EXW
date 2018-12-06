@@ -1,22 +1,27 @@
 import ObjectLoader from './ObjectLoader.js';
 
 class Plane {
-    constructor(path, material, objectFile, planeScaleSize = {}, planePosition = {}) {
-        this.path = path;
-        this.material = material;
-        this.objectFile = objectFile;
-        this.planeScaleSize = planeScaleSize;
-        this.planePosition = planePosition;
-
-        this.object = this.loadPlaneObject();        
+    constructor(planeBodyObjectDetails, cockpitObjectDetails) {
+        this.planeBodyObjectDetails = planeBodyObjectDetails;
+        this.cockpitObjectDetails = cockpitObjectDetails;
+        this.plane = this.loadInside();
+        this.cockpit = this.loadCockpit();;
     }
 
-    loadPlaneObject() {
-        const objectLoader = new ObjectLoader(`../assets/objects/`, `airplane_inside.mtl`, `airplane_inside.obj`, this.planeScaleSize, this.planePosition);
+    loadInside() {
+        const objectLoader = new ObjectLoader(this.planeBodyObjectDetails);
         setTimeout(() => {
-            this.object = objectLoader.object;
-            return this.object;
-        }, 1000);
+            this.plane = objectLoader.object;
+            return this.plane
+        }, 2000);
+    }
+
+    loadCockpit() {
+        const objectLoader = new ObjectLoader(this.cockpitObjectDetails);
+        setTimeout(() => {
+            this.cockpit = objectLoader.object;
+            return this.cockpit
+        }, 2000);
     }
 
 };
