@@ -1,5 +1,5 @@
 import Plane from './classes/Plane.js';
-import Cockpit from './classes/Cockpit.js';
+import Clock from './classes/Clock.js';
 
 {
     const WIDTH = window.innerWidth,
@@ -8,16 +8,18 @@ import Cockpit from './classes/Cockpit.js';
         fieldOfView = 75;
 
     let scene, camera, nearPlane, farPlane, renderer, body;
-    let plane, cockpit, sky;
+    let plane, cockpit, sky, clock;
 
 
     let hemisphereLight, shadowLight, ambientLight;
 
-    const createPlane = () => {
-        // plane = new Plane();
-        // plane.mesh.position.y = 0;
-        // scene.add(plane.mesh);
 
+    const createClock = () => {
+        clock = new Clock();
+
+    }
+
+    const createPlane = () => {
         const mtlLoader = new THREE.MTLLoader();
         mtlLoader.setTexturePath('../assets/objects/');
         mtlLoader.setPath('../assets/objects/');
@@ -40,10 +42,6 @@ import Cockpit from './classes/Cockpit.js';
     }
 
     const createCockpit = () => {
-        // cockpit = new Cockpit();
-        // cockpit.mesh.position.y = 1;
-        // scene.add(cockpit.mesh);
-
         const mtlLoader = new THREE.MTLLoader();
         mtlLoader.setTexturePath('../assets/objects/');
         mtlLoader.setPath('../assets/objects/');
@@ -131,12 +129,14 @@ import Cockpit from './classes/Cockpit.js';
         scene.add(ambientLight);
     }
 
+
     const init = () => {
         createScene();
         createSky();
         createPlane();
         createCockpit();
         createLight();
+        createClock();
     };
 
     init();
