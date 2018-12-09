@@ -1,27 +1,17 @@
-import ObjectLoader from './ObjectLoader.js';
 
 class Plane {
-    constructor(planeBodyObjectDetails, cockpitObjectDetails) {
-        this.planeBodyObjectDetails = planeBodyObjectDetails;
-        this.cockpitObjectDetails = cockpitObjectDetails;
-        this.plane = this.loadInside();
-        this.cockpit = this.loadCockpit();;
+    constructor(planeBodyObjectLoader, planeCockpitObjectLoader) {
+        this.planeInside = planeBodyObjectLoader.object;
+        this.cockpit = planeCockpitObjectLoader.object;
+        this.plane = this.createTotalPlane();
     }
 
-    loadInside() {
-        const objectLoader = new ObjectLoader(this.planeBodyObjectDetails);
-        setTimeout(() => {
-            this.plane = objectLoader.object;
-            return this.plane
-        }, 2000);
-    }
-
-    loadCockpit() {
-        const objectLoader = new ObjectLoader(this.cockpitObjectDetails);
-        setTimeout(() => {
-            this.cockpit = objectLoader.object;
-            return this.cockpit
-        }, 2000);
+    createTotalPlane() {
+        const planeGroup = new THREE.Group();
+        planeGroup.add(this.planeInside);
+        planeGroup.add(this.cockpit);
+        this.plane = planeGroup;
+        return this.plane;
     }
 
 };

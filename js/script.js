@@ -1,11 +1,15 @@
 import Plane from './classes/Plane.js';
-// import ObjectLoader from './classes/ObjectLoader.js';
+import ObjectLoader from './classes/ObjectLoader.js';
 import Clock from './classes/Clock.js';
 import Explosion from './classes/Explosion.js';
 
 {
     const WIDTH = window.innerWidth,
         HEIGHT = window.innerHeight
+    
+    // loaders
+    let planeInsideObject,
+        planeCockpitObject; 
 
     let scene, camera, renderer, body;
     let plane, sky, clock;
@@ -19,57 +23,6 @@ import Explosion from './classes/Explosion.js';
     const createExplosion = () => {
         clock = new Explosion();
 
-    }
-
-    const createPlane = () => {
-        const planeScaleSize = {
-            x: 2,
-            y: -2,
-            z: 2
-        }
-        const planePosition = {
-            x: 0,
-            y: 0,
-            z: 0
-        }
-
-        const cockPitSizes = {
-            x: .084,
-            y: .084,
-            z: -.12
-        }
-        const cockPitPosition = {
-            x: 0,
-            y: -9.5,
-            z: -111
-        }
-
-        const planeBodyObjectDetails = {
-            path: `../assets/objects/`, 
-            material: `airplane_inside.mtl`, 
-            objectFile: `airplane_inside.obj`, 
-            scaleSize: planeScaleSize, 
-            position: planePosition
-        }
-
-        const cockpitObjectDetails = {
-            path: `../assets/objects/`, 
-            material: `plane.mtl`, 
-            objectFile: `plane.obj`, 
-            scaleSize: cockPitSizes, 
-            position: cockPitPosition
-        }
-
-        const planeObject = new Plane(planeBodyObjectDetails, cockpitObjectDetails);
-        setTimeout(() => {
-            // --------------------------------------- Korter proberen doen ---------------------------------------
-            plane = new THREE.Group();
-            const planeBody = planeObject.plane;
-            plane.add(planeBody);
-            const cockpit = planeObject.cockpit;
-            plane.add(cockpit);
-            scene.add(plane);
-        }, 2000);
     }
 
     const loop = () => { 
@@ -142,14 +95,77 @@ import Explosion from './classes/Explosion.js';
         scene.add(ambientLight);
     }
 
+    const loadPlane = () => {
+        // Plane
+        const planeScaleSize = {
+            x: 2,
+            y: -2,
+            z: 2
+        }
+        const planePosition = {
+            x: 0,
+            y: 0,
+            z: 0
+        }
 
-    const init = () => {
-        createScene();
-        createSky();
-        createPlane();
+        const cockPitSizes = {
+            x: .084,
+            y: .084,
+            z: -.12
+        }
+        const cockPitPosition = {
+            x: 0,
+            y: -9.5,
+            z: -111
+        }
+
+        const planeBodyObjectDetails = {
+            path: `../assets/objects/`, 
+            material: `airplane_inside.mtl`, 
+            objectFile: `airplane_inside.obj`, 
+            scaleSize: planeScaleSize, 
+            position: planePosition
+        }
+
+        const cockpitObjectDetails = {
+            path: `../assets/objects/`, 
+            material: `plane.mtl`, 
+            objectFile: `plane.obj`, 
+            scaleSize: cockPitSizes, 
+            position: cockPitPosition
+        }
+
+        planeInsideObject = new ObjectLoader(planeBodyObjectDetails); 
+        planeCockpitObject = new ObjectLoader(cockpitObjectDetails); 
+    }
+
+    const loadObjects = () => {
+        loadPlane();
+    }
+
+    const createPlane = () => {
+        plane = new Plane(planeInsideObject, planeCockpitObject);
+        plane = plane.plane;
+        scene.add(plane);
+    }
+
+    const addObjectsToScene = () => {
         createLight();
+        createPlane();  
         createClock();
         createExplosion();
+    }
+
+    const init = () => {
+        // 1. Create basic scene & preload .obj-files first
+        createScene();
+        createSky();
+        loadObjects();
+
+        // 2. When everything is loaded, then add everything to the scene
+        setTimeout(() => {
+            addObjectsToScene();
+        }, 2000)
     };
 
     init();
