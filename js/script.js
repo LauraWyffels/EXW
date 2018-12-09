@@ -74,6 +74,11 @@ import Explosion from './classes/Explosion.js';
 
     const loop = () => { 
         renderer.render(scene, camera);
+
+        // test walking
+        if (body.position.z > -135) {
+            body.position.z -= ((1 * (135 + body.position.z)) / 100);
+        }  
     }
 
     const createBody = camera => {
