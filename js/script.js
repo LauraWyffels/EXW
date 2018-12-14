@@ -1,15 +1,9 @@
-import Plane from './classes/Plane.js';
-import ObjectLoader from './classes/ObjectLoader.js';
 import Clock from './classes/Clock.js';
 import Explosion from './classes/Explosion.js';
 
 {
     const WIDTH = window.innerWidth,
         HEIGHT = window.innerHeight
-    
-    // loaders
-    let planeInsideObject,
-        planeCockpitObject; 
 
     let scene, camera, renderer, body;
     let plane, sky, clock;
@@ -18,20 +12,20 @@ import Explosion from './classes/Explosion.js';
 
     const createClock = () => {
         clock = new Clock();
-     }
+    }
 
     const createExplosion = () => {
         clock = new Explosion();
 
     }
 
-    const loop = () => { 
+    const loop = () => {
         renderer.render(scene, camera);
 
         // test walking
         if (body.position.z > -135) {
             body.position.z -= ((1 * (135 + body.position.z)) / 100);
-        }  
+        }
     }
 
     const createBody = camera => {
@@ -58,23 +52,18 @@ import Explosion from './classes/Explosion.js';
         renderer.setClearColor(0xff0000, 0.0);
         renderer.shadowMap.enabled = true;
 
-        // Enable VR 
-        const $container = document.getElementById(`world`);
-        document.body.appendChild(WEBVR.createButton(renderer));
-        renderer.vr.enabled = true;
-        renderer.setAnimationLoop(() => loop());
-        $container.appendChild(renderer.domElement);
+
     };
 
     const createSky = () => {
         const skyGeometry = new THREE.CubeGeometry(100000, 10000, 100000);
         const skyMaterials = [
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/front.JPG"), side: THREE.DoubleSide }),
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/back.JPG"), side: THREE.DoubleSide }),
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/up.JPG"), side: THREE.DoubleSide }),
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/down.JPG"), side: THREE.DoubleSide }),
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/right.JPG"), side: THREE.DoubleSide }),
-            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("../assets/images/skybox/left.JPG"), side: THREE.DoubleSide })
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("./assets/images/skybox/front.JPG"), side: THREE.DoubleSide }),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("./assets/images/skybox/back.JPG"), side: THREE.DoubleSide }),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("./assets/images/skybox/up.JPG"), side: THREE.DoubleSide }),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("./assets/images/skybox/down.JPG"), side: THREE.DoubleSide }),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("./assets/images/skybox/right.JPG"), side: THREE.DoubleSide }),
+            new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("./assets/images/skybox/left.JPG"), side: THREE.DoubleSide })
         ]
 
         const skyMaterial = new THREE.MeshFaceMaterial(skyMaterials);
@@ -95,72 +84,17 @@ import Explosion from './classes/Explosion.js';
         scene.add(ambientLight);
     }
 
-    const loadPlane = () => {
-        // Plane
-        const planeScaleSize = {
-            x: 2,
-            y: -2,
-            z: 2
-        }
-        const planePosition = {
-            x: 0,
-            y: 0,
-            z: 0
-        }
-
-        const cockPitSizes = {
-            x: .084,
-            y: .084,
-            z: -.12
-        }
-        const cockPitPosition = {
-            x: 0,
-            y: -9.5,
-            z: -111
-        }
-
-        const planeBodyObjectDetails = {
-            path: `../assets/objects/`, 
-            material: `airplane_inside.mtl`, 
-            objectFile: `airplane_inside.obj`, 
-            scaleSize: planeScaleSize, 
-            position: planePosition
-        }
-
-        const cockpitObjectDetails = {
-            path: `../assets/objects/`, 
-            material: `plane.mtl`, 
-            objectFile: `plane.obj`, 
-            scaleSize: cockPitSizes, 
-            position: cockPitPosition
-        }
-
-        planeInsideObject = new ObjectLoader(planeBodyObjectDetails); 
-        planeCockpitObject = new ObjectLoader(cockpitObjectDetails); 
-    }
-
-    const loadObjects = () => {
-        loadPlane();
-    }
-
-    const createPlane = () => {
-        plane = new Plane(planeInsideObject, planeCockpitObject);
-        plane = plane.plane;
-        scene.add(plane);
-    }
 
     const addObjectsToScene = () => {
         createLight();
-        createPlane();  
-        createClock();
-        createExplosion();
+        // createClock();
+        // createExplosion();
     }
 
     const init = () => {
         // 1. Create basic scene & preload .obj-files first
         createScene();
         createSky();
-        loadObjects();
 
         // 2. When everything is loaded, then add everything to the scene
         setTimeout(() => {
