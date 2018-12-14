@@ -9,29 +9,22 @@
 
     <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet' type='text/css'>
     <link href='css/style.css' rel='stylesheet' type='text/css'>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
 </head>
 
 <body>
-    <div id="clockdiv">
-        <h2 class="titleBomb">Explosion in</h2>
-        <div class="div">
-            <span class="minutes "></span>
-            <div class="smalltext">Minutes</div>
-        </div>
-        <div class="div">
-            <span class="seconds "></span>
-            <div class="smalltext">Seconds</div>
-        </div>
-    </div>
-    <!-- <div class="expolsion"></div> -->
-    <div id="world"></div>
-    <audio
-        src="/assets/sounds/engine.mp3">
-    </audio>
-    <script src="js/three.js"></script>
-    <script src="js/WebVR.js"></script>
+    <a-scene>
+
+        <a-sky color="#abc6d1"></a-sky>
+        <a-entity obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)" position="-1 -16 -112"
+            scale=".12 .12 -.12"></a-entity>
+        <a-entity obj-model="obj: url(assets/objects/airplane_inside.obj); mtl: url(assets/objects/airplane_inside.mtl)"
+            scale="2 -2 2"></a-entity>
+    </a-scene>
+
+    <!-- <script src="js/three.js"></script>
     <script src="js/loaders/OBJLoader.js"></script>
-    <script src="js/loaders/MTLLoader.js"></script>
+    <script src="js/loaders/MTLLoader.js"></script> -->
     <script src="js/script.js" type="module"></script>
 </body>
 
