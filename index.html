@@ -17,26 +17,22 @@
 </head>
 
 <body>
+
     <a-scene>
 
-        <a-sky color="#abc6d1"></a-sky>
-        <a-group id="plane">
-
-
-            <a-entity primitive: cylinder obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)"
-                position="0 -9.5 -111" scale=".084 .084 -.12">
-
-            </a-entity>
-            <a-entity primitive: cylinder obj-model="obj: url(assets/objects/airplane_inside.obj); mtl: url(assets/objects/airplane_inside.mtl)"
+        <a-sky id="sky" src="assets/images/sky.jpg"></a-sky>
+        <a-entity>
+            <a-entity obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)" position="0 -9.5 -111"
+                scale=".084 .084 -.12"></a-entity>
+            <a-entity obj-model="obj: url(assets/objects/airplane_inside.obj); mtl: url(assets/objects/airplane_inside.mtl)"
                 scale="2 -2 2" position="0 0 0"></a-entity>
-        </a-group>
+        </a-entity>
 
-
-        <a-entity particle-system="preset: stars; color: #515; particleCount: 1000" position="0 0 -5"></a-entity>
     </a-scene>
 
-    <script src="js/three.js"></script>
-    <script src="js/MTLLoader.js"></script>
+
+    <!-- <script src="js/three.js"></script>
+        <script src="js/MTLLoader.js"></script> -->
     <script src="js/script.js" type="module"></script>
 </body>
 

@@ -8,7 +8,7 @@ import Explosion from './classes/Explosion.js';
         HEIGHT = window.innerHeight
 
     let scene, camera, renderer, body;
-    let sky, clock;
+    let sky = document.querySelector('#sky');
 
     let hemisphereLight, shadowLight, ambientLight;
 
