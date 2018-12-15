@@ -9,7 +9,7 @@ AFRAME.registerComponent(`change-color-on-hover`, {
         const defaultColor = el.getAttribute(`material`).color;
 
         el.addEventListener(`mouseenter`, () => {
-        el.setAttribute(`color`, data.color);
+            el.setAttribute(`color`, data.color);
         });
 
         el.addEventListener(`mouseleave`, () => {
