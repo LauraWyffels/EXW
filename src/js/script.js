@@ -1,10 +1,13 @@
 {
-    // HTML Objects
-    const popup1 = document.getElementById(`popupText1`);
+  // HTML Objects
+  const popup1 = document.getElementById(`popupText1`);
 
-    const init = () => {
-        
-    }
+  // var explosionSound = document.getElementById("bomb");
+  // entity.audio.sound.playSound();
 
-    init();
+  const init = () => {
+
+  };
+
+  init();
 }
