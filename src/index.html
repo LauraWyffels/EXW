@@ -28,29 +28,9 @@
         <a-assets>
             <!-- Images -->
             <img id="sky" src="assets/images/sky.jpg">
-            
-            <!-- Animations -->
-            <script id="crashAnimation" type="text/html">
-                <a-animation attribute="position"
-                    easing="ease-in"
-                    dur="${duration}"
-                    to="${position}"
-                    delay="${delay}"></a-animation>
-                <a-animation attribute="rotation"
-                    easing="ease-in"
-                    dur="${duration}"
-                    to="${rotation}"
-                    delay="${delay}"></a-animation>
-            </script>
+
         </a-assets>
 
-        <!-- Alert -->
-        <!-- <a-text id="popupText1" align="center" value="Attention! \n \n There is a bomb on board" width="2" geometry="primitive: plane; width: 2; height: 1;" material="color: black; opacity: 0.3"
-            position=" 0 0 -2" color="white">
-            <a-plane color="#EF2D5E" position="-1 -1.5 -2" width="2" change-color-on-hover="color: blue">
-            <a-text color="white" align="center" value="Disarm the bomb">
-        </a-text> -->
-            
         <!-- Basic scenery -->
         <a-sky log="Sky added to scene 1" src="#sky" template="src: #crashAnimation" data-delay="30000" data-duration="5000" data-position="0 4500 -1000" data-rotation="0 0 1100"></a-sky>
         <!-- <audio src="assets/sounds/engine.mp3" autoplay="true"></audio> -->
@@ -62,22 +42,17 @@
                 scale="1 -1 1" position="0 0 0" template="src: #crashAnimation" data-delay="30000" data-duration="5000" data-position="5 5 -5" data-rotation="-180 0 3000"></a-entity>
         </a-entity>
 
-        <!-- <a-entity id="explosion" position="0 0 0" particle-system="preset: dust; texture: ./assets/images/particle.png; width: 30; height: 30; color: #700C04;"></a-entity> -->
-
-        <!-- Gazing/clicking at object test-->
-        <a-box color="#EF2D5E" position="0 -.5 -3" scale=".05 .01" change-color-on-hover="color: blue"></a-box>
-
         <!-- popup text-->
-        <!-- <a-text id="popupText1" value="Attention! \n \n There is a bomb on board \n Choose the right answer and you might survive..."
-            align="center" width="2" geometry="primitive: plane; width: 3; height: 2;" material="color: black; opacity: 0.5"
-            position=" 0 0 -3" color="white">
-            <a-plane scenehandler color="#EF2D5E" position="-1.5 -1.5 -3" width="3" change-color-on-hover="color: blue">
-                <a-text align="center" color="white" value="Find bomb"></a-text>
+        <a-text id="popupText1" value="Attention! \n \n There is a bomb on board..." align="center" geometry="primitive: plane; width: 3; height: 2;"
+            material="color: black; opacity: 0.5" position=" 0 0 -3" color="white">
+            <a-plane scenehandler color="#EF2D5E" position="-0.75 -0.75 0.01" width="1.5" height="0.5"
+                change-color-on-hover="color: blue">
+                <a-text align="center" color="white" value="Disarm the bomb" wrap-count="65"></a-text>
             </a-plane>
-            <a-plane color="#EF2D5E" position="1 -1.5 -2" width="2" change-color-on-hover="color: blue">
-                <a-text color="white" align="center" value="Get the hell out!"></a-text>
+            <a-plane color="#EF2D5E" position="0.75 -0.75 0.01" width="1.5" height="0.5" change-color-on-hover="color: blue">
+                <a-text color="white" align="center" value="Get the hell out!" wrap-count="65"></a-text>
             </a-plane>
-        </a-text> -->
+        </a-text>
 
         <!-- Gazing/clicking at object TEST-->
         <!-- <a-box class="arrowFront" color="#EF2D5E" position="0 -3 -10" scale=".2 .1 1" change-color-on-hover="color: blue">
@@ -91,16 +66,6 @@
         <!-- This should always be placed at the end of the scene-->
         <a-camera class="camera">
             <a-cursor color="white"></a-cursor>
-            <!-- <a-animation attribute="rotation"
-                easing="ease-in"
-                dur="15000"
-                to="60 360 20"
-                delay="15000"></a-animation>
-            <a-animation attribute="position"
-                easing="ease-in"
-                dur="15000"
-                to="0 -2000 -1500"
-                delay="15000"></a-animation> -->
         </a-camera>
     </a-scene>
 
