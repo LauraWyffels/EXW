@@ -28,18 +28,17 @@
         <a-assets>
             <!-- Images -->
             <img id="sky" src="assets/images/sky.jpg">
-
         </a-assets>
 
         <!-- Basic scenery -->
-        <a-sky log="Sky added to scene 1" src="#sky" template="src: #crashAnimation" data-delay="30000" data-duration="5000" data-position="0 4500 -1000" data-rotation="0 0 1100"></a-sky>
+        <a-sky log="Sky added to scene 1" src="#sky"></a-sky>
         <!-- <audio src="assets/sounds/engine.mp3" autoplay="true"></audio> -->
 
         <a-entity class="airplane">
             <a-entity obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)" position="0 -5 -61.3"
-                scale=".04 .04 -.04" template="src: #crashAnimation" data-delay="30000" data-duration="5000" data-position="5 5 -5" data-rotation="-10 0 3000"></a-entity>
+                scale=".04 .04 -.04"></a-entity>
             <a-entity obj-model="obj: url(assets/objects/airplane_inside.obj); mtl: url(assets/objects/airplane_inside.mtl)"
-                scale="1 -1 1" position="0 0 0" template="src: #crashAnimation" data-delay="30000" data-duration="5000" data-position="5 5 -5" data-rotation="-180 0 3000"></a-entity>
+                scale="1 -1 1" position="0 0 0"></a-entity>
         </a-entity>
 
         <!-- popup text-->
@@ -61,6 +60,7 @@
 
         <a-entity class="loader">
             <a-plane color="#000" height="2000" width="2000" position="0 0 -2"></a-plane>
+            <a-text value="Loading the experience" align="center" position="0 0 -2">
         </a-entity>
         
         <!-- This should always be placed at the end of the scene-->
