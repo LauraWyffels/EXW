@@ -13,6 +13,8 @@
     <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component/dist/aframe-template-component.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script> 
+    <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
 
     <!-- Custom A-frame components -->
     <script src="js/components/Log.js"></script>
@@ -50,14 +52,14 @@
         </a-text> -->
             
         <!-- Basic scenery -->
-        <a-sky log="Sky added to scene 1" src="#sky" template="src: #crashAnimation" data-delay="15000" data-duration="5000" data-position="0 4500 -1000" data-rotation="0 0 1100"></a-sky>
+        <a-sky log="Sky added to scene 1" src="#sky" template="src: #crashAnimation" data-delay="30000" data-duration="5000" data-position="0 4500 -1000" data-rotation="0 0 1100"></a-sky>
         <!-- <audio src="assets/sounds/engine.mp3" autoplay="true"></audio> -->
 
         <a-entity class="airplane">
             <a-entity obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)" position="0 -5 -61.3"
-                scale=".04 .04 -.04" template="src: #crashAnimation" data-delay="15000" data-duration="5000" data-position="5 5 -5" data-rotation="-10 0 3000"></a-entity>
+                scale=".04 .04 -.04" template="src: #crashAnimation" data-delay="30000" data-duration="5000" data-position="5 5 -5" data-rotation="-10 0 3000"></a-entity>
             <a-entity obj-model="obj: url(assets/objects/airplane_inside.obj); mtl: url(assets/objects/airplane_inside.mtl)"
-                scale="1 -1 1" position="0 0 0" template="src: #crashAnimation" data-delay="15000" data-duration="5000" data-position="5 5 -5" data-rotation="-180 0 3000"></a-entity>
+                scale="1 -1 1" position="0 0 0" template="src: #crashAnimation" data-delay="30000" data-duration="5000" data-position="5 5 -5" data-rotation="-180 0 3000"></a-entity>
         </a-entity>
 
         <!-- <a-entity id="explosion" position="0 0 0" particle-system="preset: dust; texture: ./assets/images/particle.png; width: 30; height: 30; color: #700C04;"></a-entity> -->
@@ -82,6 +84,10 @@
             <a-event name="mouseenter" scale="1.2 .5 1.2"></a-event>
         </a-box> -->
 
+        <a-entity class="loader">
+            <a-plane color="#000" height="2000" width="2000" position="0 0 -2"></a-plane>
+        </a-entity>
+        
         <!-- This should always be placed at the end of the scene-->
         <a-camera class="camera">
             <a-cursor color="white"></a-cursor>

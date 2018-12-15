@@ -4,6 +4,10 @@ AFRAME.registerComponent(`log`, {
 
   init() {
     const stringToLog = this.data;
-    console.log(stringToLog);
+    const $el = this.el;  // = box or sphere or...
+    
+    $el.addEventListener(`loaded`, () => {
+      console.log(stringToLog);
+    });
   }
 });
