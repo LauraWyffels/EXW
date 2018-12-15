@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>An Extraordinary Airplane Flight</title>
+
+    <link href='css/reset.css' rel='stylesheet' type='text/css'>
+    <link href='css/style.css' rel='stylesheet' type='text/css'>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+
+    <!-- Custom A-frame components -->
+    <script src="js/components/Log.js"></script>
+    <script src="js/components/ChangeColorOnHover.js"></script>
+</head>
+
+<body>
+    <!-- SCENE 1 -->
+    <a-scene log="Scene 1 added">
+        <!-- Basic scenery -->
+        <a-sky log="Sky added to scene 1" color="#abc6d1"></a-sky>
+        <a-entity log="Cockpit added to scene 1" obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)" position="0 -9.5 -111"
+            scale=".084 .084 -.12"></a-entity>
+        <a-entity log="Inside of the plane added to scene 1" obj-model="obj: url(assets/objects/airplane_inside.obj); mtl: url(assets/objects/airplane_inside.mtl)"
+            scale="2 -2 2" position="0 0 0"></a-entity>
+
+        <!-- Gazing/clicking at object test-->
+        <a-box color="#EF2D5E" position="0 -.5 -3" scale=".05 .01" change-color-on-hover="color: blue"></a-box>
+
+        <!-- This should always be placed at the end of the scene-->
+        <a-camera>
+            <a-cursor></a-cursor>
+        </a-camera>
+    </a-scene>
+
+    <!-- SCENE 2: explosion-->
+    <!-- <a-scene></a-scene> -->
+</body>
+</html>

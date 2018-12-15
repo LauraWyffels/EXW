@@ -1,0 +1,19 @@
+{
+  "name": "aframe-webpack-boilerplate",
+  "description": "Boilerplate with A-Frame's 'Hello, World!' of WebVR.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "script.js",
+  "devDependencies": {
+    "eslint": "^4.13.1",
+    "eslint-config-devine": "^1.8.1"
+  },
+  "keywords": [
+    "aframe",
+    "aframe-example",
+    "aframe-boilerplate",
+    "aframe-scene",
+    "webvr",
+    "vr"
+  ]
+}
