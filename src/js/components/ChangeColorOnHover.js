@@ -1,19 +1,20 @@
 // 2. Gazing controlls
 AFRAME.registerComponent(`change-color-on-hover`, {
     schema: {
-        color: {default: `red`}
+        color: { default: `red` }
     },
-    init: function() {
+    init: function () {
         const data = this.data;
         const el = this.el;  // = box or sphere or...
         const defaultColor = el.getAttribute(`material`).color;
 
         el.addEventListener(`mouseenter`, () => {
-        el.setAttribute(`color`, data.color);
+            el.setAttribute(`color`, data.color);
         });
 
         el.addEventListener(`mouseleave`, () => {
-        el.setAttribute(`color`, defaultColor);
+            el.setAttribute(`color`, defaultColor);
         });
     }
 });
+
