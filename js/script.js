@@ -1,14 +1,28 @@
 import Clock from './classes/Clock.js';
 import Explosion from './classes/Explosion.js';
 
+
+
 {
     const WIDTH = window.innerWidth,
         HEIGHT = window.innerHeight
 
     let scene, camera, renderer, body;
-    let plane, sky, clock;
+    let sky, clock;
 
     let hemisphereLight, shadowLight, ambientLight;
+
+
+    // var cockpit = document.querySelector('#cockpit');
+
+
+    AFRAME.registerComponent('example-mesh', {
+        init: function () {
+            var plane = document.querySelector('#plane').object3D;
+            plane.setObject3D('mesh', new THREE.Mesh());
+            plane.getObject3D('mesh');  // Returns THREE.Mesh that was just created.
+        }
+    });
 
     const createClock = () => {
         clock = new Clock();
