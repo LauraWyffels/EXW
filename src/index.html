@@ -21,26 +21,40 @@
     <!-- SCENE 1 -->
     <a-scene log="Scene 1 added">
         <!-- Basic scenery -->
-        <a-sky log="Sky added to scene 1" id="sky" src="assets/images/sky.jpg"></a-sky>
+        <!-- <a-sky log="Sky added to scene 1" id="sky" src="assets/images/sky.jpg"></a-sky> -->
 
-        <a-entity>
+        <!-- <a-entity>
             <a-entity obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)" position="0 -9.5 -111"
                 scale=".084 .084 -.12"></a-entity>
             <a-entity obj-model="obj: url(assets/objects/airplane_inside.obj); mtl: url(assets/objects/airplane_inside.mtl)"
                 scale="2 -2 2" position="0 0 0"></a-entity>
-        </a-entity>
+        </a-entity> -->
 
         <!-- Gazing/clicking at object test-->
         <a-box color="#EF2D5E" position="0 -.5 -3" scale=".05 .01" change-color-on-hover="color: blue"></a-box>
+
+        <!-- popup text-->
+        <a-text id="popupText1" value="Attention! \n There is a bomb on board \n Choose the right answer and you might survive"
+            align="center" width="2" geometry="primitive: plane; width: 3; height: 2; " material="color: black; opacity: 0.5"
+            position=" 0 0 -3" color="white">
+            <a-plane color="#EF2D5E" position="-1.5 -1.5 -3" width="3" change-color-on-hover="color: blue">
+                <a-text align="center" color="white" value="Find bomb"></a-text>
+            </a-plane>
+            <a-plane color="#EF2D5E" position="1.5 -1.5 -3" width="3" change-color-on-hover="color: blue">
+                <a-text align="center" color="white" value="Jump out of the plane"></a-text>
+            </a-plane>
+        </a-text>
 
         <!-- This should always be placed at the end of the scene-->
         <a-camera>
             <a-cursor></a-cursor>
         </a-camera>
+
     </a-scene>
 
     <!-- SCENE 2: explosion-->
     <!-- <a-scene></a-scene> -->
+    <script src="js/script.js"></script>
 </body>
 
 </html>
