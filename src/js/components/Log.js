@@ -1,8 +1,8 @@
-// 1. Logging something:
+// Logging something:
 AFRAME.registerComponent('log', {
     schema: {type: 'string'},
 
-    init: function() {
+    init() {
         const stringToLog = this.data;
         console.log(stringToLog);
     }

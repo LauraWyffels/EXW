@@ -1,9 +1,9 @@
-// 2. Gazing controlls
+// Gazing controlls
 AFRAME.registerComponent(`change-color-on-hover`, {
     schema: {
         color: {default: `red`}
     },
-    init: function() {
+    init() {
         const data = this.data;
         const el = this.el;  // = box or sphere or...
         const defaultColor = el.getAttribute(`material`).color;
