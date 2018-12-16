@@ -31,8 +31,7 @@
         </a-assets>
 
         <a-sky log="Sky added to scene 2" src="#sky"></a-sky>
-<<<<<<< HEAD:src/disarmBomb.html
-        <!-- <audio src="assets/sounds/engine.mp3" autoplay="true"></audio> -->
+        <audio src="assets/sounds/engine.mp3" autoplay="true"></audio>
 
         <a-entity class="airplane" position="0 0 72">
             <a-entity obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)" position="0 -5 -61.3"
@@ -52,29 +51,6 @@
             material="color: black; opacity: 0.5" position=" 0 0 -3" color="white">
             <a-plane scenehandler color="#EF2D5E" position="-0.75 -0.75 0.01" width="1.5" height="0.5"
                 change-color-on-hover="color: blue">
-=======
-        <audio src="../assets/sounds/engine.mp3" autoplay="true"></audio>
-
-        <a-entity class="airplane">
-            <a-entity obj-model="obj: url(../assets/objects/plane.obj); mtl: url(../assets/objects/plane.mtl)" position="0 -5 10.5"
-                scale=".04 .04 -.04" template="src: #crashAnimation" data-delay="15000" data-duration="5000"
-                data-position="5 5 -5" data-rotation="-10 0 3000"></a-entity>
-            <a-entity obj-model="obj: url(../assets/objects/airplane_inside.obj); mtl: url(../assets/objects/airplane_inside.mtl)"
-                scale="1 -1 1" position="0 0 72" template="src: #crashAnimation" data-delay="15000" data-duration="5000"
-                data-position="5 5 -5" data-rotation="-180 0 3000"></a-entity>
-        </a-entity>
-
-        <a-entity>
-            <a-entity audiohandler="soundName: bombSound" obj-model="obj: url(../assets/objects/bomb.obj); mtl: url(../assets/objects/bomb.mtl)"
-                position="0 -5 10.5" scale=".04 .04 -.04"></a-entity>
-            <!-- <a-entity id="explosion" position="-7 -8 -15" particle-system="preset: stars; texture: ./assets/images/particle.png;  accelerationSpread: 50 50 50; blending: 2; color: #FFF; dur: 0.5;"
-                enable="false"></a-entity> --> 
-        </a-entity>
-
-        <a-text id="popupText2" value="You found the bomb! \n \n Cut one of the wires" align="center" geometry="primitive: plane; width: 3; height: 2;"
-            material="color: black; opacity: 0.5" position="0 0 -3" color="white">
-            <a-plane color="#EF2D5E" position="-0.75 -0.75 0.01" width="1.5" height="0.5" change-color-on-hover="color: blue">
->>>>>>> 3a83700b32348d0311cd612dd3e1086cfc8e01a1:src/pages/disarmBomb.html
                 <a-text align="center" color="white" value="Red wire" wrap-count="65"></a-text>
             </a-plane>
             <a-plane color="#EF2D5E" position="0.75 -0.75 0.01" width="1.5" height="0.5" change-color-on-hover="color: blue">
