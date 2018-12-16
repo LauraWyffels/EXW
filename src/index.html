@@ -42,20 +42,31 @@
                     to="${crotation}">
                 </a-animation>
             </script>
-            <script id="walkAnimation" type="text/html">
+            <script id="walkToCockPitAnimation" type="text/html">
                 <a-animation attribute="position"
                     easing="ease-in"
-                    dur="${duration}"
-                    to="${position}">
+                    dur="${wtcduration}"
+                    to="${wtcposition}">
                 </a-animation>
-                <a-animation attribute="rotation"
+            </script>
+            <script id="walkFrontAnimation" type="text/html">
+                <a-animation attribute="position"
                     easing="ease-in"
-                    dur="${duration}"
-                    to="${rotation}">
+                    dur="${wfduration}"
+                    to="${wfposition}">
+                </a-animation>
+            </script>
+            <script id="walkLeftAnimation" type="text/html">
+                <a-animation attribute="position"
+                    delay="1000"
+                    easing="ease"
+                    dur="${wlduration}"
+                    to="${wlposition}">
                 </a-animation>
             </script>
             <script id="jumpAnimation" type="text/html">
                 <a-animation attribute="position"
+                    delay="2000"
                     easing="ease-in"
                     dur="${jduration}"
                     to="${jposition}">
@@ -64,26 +75,42 @@
         </a-assets>
 
         <!-- Audio -->
-        <audio src="assets/sounds/engine.mp3" autoplay="true"></audio>
+        <!-- <audio src="assets/sounds/engine.mp3" autoplay="true"></audio> -->
 
         <!-- Basic scenery -->
-        <a-sky class="sky falling-object" log="Sky added to scene 1" src="#sky" data-cduration="5000" data-cposition="0 4500 -1000" data-crotation="0 0 1100" data-jduration="6000" data-jposition="0 4500 0">
+        <a-sky class="sky falling-object" log="Sky added to scene 1" src="#sky" 
+        data-cduration="5000" data-cposition="0 4600 -1000" data-crotation="0 0 1100" 
+        data-jduration="6000" data-jposition="0 4600 0"
+        data-wfduration="5000" data-wfposition="0 0 -10"
+        data-wlduration="1000" data-wlposition="10 0 -10"
+        data-wtcduration="5000" data-wtcposition="0 0 -12">
         </a-sky>
 
         <!-- Airplane -->
         <a-entity class="airplane" position="0 0 0">
             <a-entity class="plane-part falling-object" obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)" 
                 position="0 -5 -22" scale=".04 .04 -.04" data-cduration="5000" data-cposition="5 5 -5" data-crotation="-10 90 3000"
-                data-jduration="6000" data-jposition="5 4500 -5">
+                data-jduration="6000" data-jposition="40 4800 5"
+                data-wfduration="5000" data-wfposition="0 -5 5"
+                data-wlduration="1000" data-wlposition="10 -5 5"
+                data-wtcduration="5000" data-wtcposition="0 -5 13">
             </a-entity>
             <a-entity class="plane-part falling-object" obj-model="obj: url(assets/objects/airplane_inside.obj); mtl: url(assets/objects/airplane_inside.mtl)"
                 scale="1 -1 1" position="0 0 40" data-cduration="5000" data-cposition="5 5 -15" data-crotation="-180 0 3000"
-                data-jduration="6000" data-jposition="5 4500 -15">
+                data-jduration="6000" data-jposition="40 4800 67"
+                data-wfduration="5000" data-wfposition="0 0 67"
+                data-wlduration="1000" data-wlposition="10 0 67"
+                data-wtcduration="5000" data-wtcposition="0 0 74">
             </a-entity>
         <a-entity>
 
         <!-- Bomb -->
-        <a-entity class="bomb falling-object" audiohandler visible="true" position="0 0 -30" data-cduration="3000" data-cposition="5 5 -5" data-crotation="90 180 360" data-jduration="6000" data-jposition="0 3000 -30">
+        <a-entity class="bomb falling-object" audiohandler visible="true" position="0 0 -30" 
+            data-cduration="3000" data-cposition="5 5 -5" data-crotation="90 180 360" 
+            data-jduration="6000" data-jposition="0 3000 -15"
+            data-wfduration="5000" data-wfposition="0 0 -15"
+            data-wlduration="1000" data-wlposition="10 0 -15"
+            data-wtcduration="5000" data-wtcposition="0 0 -15">
             <a-entity obj-model="obj: url(assets/objects/bomb.obj); mtl: url(assets/objects/bomb.mtl)" position="0 -5 10"
                 scale=".04 .04 -.04"></a-entity>
             <a-entity id="explosion" position="-7 -8 -15" particle-system="preset: stars; texture: ./assets/images/particle.png;  accelerationSpread: 50 50 50; blending: 2; color: #FFF; dur: 0.5;"></a-entity>
@@ -105,7 +132,7 @@
                 </a-plane>
 
                 <!-- Option -->
-                <a-plane class="popup-button" id="getOut" jump color="#EF2D5E" position="0.75 -0.75 0.01" width="1.5" height="0.5" change-color-on-hover="color: blue">
+                <a-plane class="popup-button" jump id="getOut" color="#EF2D5E" position="0.75 -0.75 0.01" width="1.5" height="0.5" change-color-on-hover="color: blue">
                     <a-text align="center" color="white" value="Get the hell out!" wrap-count="65"></a-text>
                 </a-plane>
             </a-text>
@@ -143,13 +170,13 @@
             </a-text>  
         </a-entity>
 
-        <a-entity loading-screen>
+        <!-- <a-entity loading-screen>
             <a-plane color="#000" height="2000" width="2000" position="0 0 -2.1"></a-plane>
             <a-text value="Loading the experience" align="center" position="0 0 -2">
                 <a-animation attribute="opacity" dur="10000" to="1"></a-animation>
                 <a-animation attribute="scale" dur="10000" to="1.2 1.2 1.2"></a-animation>
             </a-text>
-        </a-entity>
+        </a-entity> -->
 
         <!-- This should always be placed at the end of the scene-->
         <a-camera class="camera">

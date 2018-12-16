@@ -6,6 +6,14 @@ AFRAME.registerComponent(`jump`, {
 });
 
 const handleClickJump = () => {
-    [...document.querySelectorAll(`.falling-object`)].forEach(obj => obj.setAttribute(`template`, `src: #jumpAnimation`));
+    const fallingObjects = [...document.querySelectorAll(`.falling-object`)];
+
+    fallingObjects.forEach(obj => obj.setAttribute(`template`, `src: #walkFrontAnimation`));
+    setTimeout(() => {
+        fallingObjects.forEach(obj => obj.setAttribute(`template`, `src: #walkLeftAnimation`));
+        setTimeout(() => {
+            fallingObjects.forEach(obj => obj.setAttribute(`template`, `src: #jumpAnimation`));
+        }, 2000)
+    }, 5000)
+    
 };
-  
