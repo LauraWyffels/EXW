@@ -13,5 +13,10 @@ const handleClickCrash = () => {
   [...planeParts, sky, bomb].forEach(part => {
     part.setAttribute(`template`, `src: #crashAnimation`);
   });
+  const $audio2 = document.getElementById(`crashSound`);
+  $audio2.play();
+
+  // remove all pop-ups
+  [...document.querySelectorAll(`.popup-text`)].forEach(popup => popup.setAttribute(`visible`, `false`));
 };
 
