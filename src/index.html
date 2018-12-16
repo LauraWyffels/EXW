@@ -19,6 +19,7 @@
     <script src="js/components/Log.js"></script>
     <script src="js/components/ChangeColorOnHover.js"></script>
     <script src="js/components/sceneHandler.js"></script>
+    <script src="js/components/LoadingScreen.js"></script>
 </head>
 
 <body>
@@ -31,24 +32,32 @@
             <img id="jump" src="assets/images/jump.png">
 
             <!-- Animations -->
-            <script id="popup" type="text/html">
-                <a-animation attribute="visible"
+            <script id="crashAnimation" type="text/html">
+                <a-animation attribute="position"
                     easing="ease-in"
-                    to="${true}"
-                    delay="1000">
-                </a-animation>
+                    dur="${duration}"
+                    to="${position}"
+                    delay="${delay}"></a-animation>
+                <a-animation attribute="rotation"
+                    easing="ease-in"
+                    dur="${duration}"
+                    to="${rotation}"
+                    delay="${delay}"></a-animation>
             </script>
         </a-assets>
 
         <!-- Basic scenery -->
-        <a-sky src="#sky"></a-sky>
-        <!-- <audio src="assets/sounds/engine.mp3" autoplay="true"></audio> -->
+        <a-sky log="Sky added to scene 1" src="#sky" template="src: #crashAnimation" data-delay="30000" data-duration="5000"
+            data-position="0 4500 -1000" data-rotation="0 0 1100"></a-sky>
+        <audio src="assets/sounds/engine.mp3" autoplay="true"></audio>
 
         <a-entity class="airplane">
-            <a-entity obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)" position="0 -5 -61.3"
-                scale=".04 .04 -.04"></a-entity>
+            <a-entity obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)" position="0 -5 -22"
+                scale=".04 .04 -.04" template="src: #crashAnimation" data-delay="30000" data-duration="5000"
+                data-position="5 5 -5" data-rotation="-10 0 3000"></a-entity>
             <a-entity obj-model="obj: url(assets/objects/airplane_inside.obj); mtl: url(assets/objects/airplane_inside.mtl)"
-                scale="1 -1 1" position="0 0 0"></a-entity>
+                scale="1 -1 1" position="0 0 40" template="src: #crashAnimation" data-delay="30000" data-duration="5000"
+                data-position="5 5 -15" data-rotation="-180 0 3000"></a-entity>
         </a-entity>
 
         <!-- popup text-->
@@ -70,19 +79,14 @@
 
         </a-entity>
 
+        <a-entity loading-screen>
+            <a-plane color="#000" height="2000" width="2000" position="0 0 -2.1"></a-plane>
+            <a-text value="Loading the experience" align="center" position="0 0 -2">
+        </a-entity>
 
-        <!-- Gazing/clicking at object TEST-->
-        <!-- <a-box class="arrowFront" color="#EF2D5E" position="0 -3 -10" scale=".2 .1 1" change-color-on-hover="color: blue">
-            <a-event name="mouseenter" scale="1.2 .5 1.2"></a-event>
-        </a-box> -->
-
-        <!-- <a-entity class="loader">
-            <a-plane color="#000" height="2000" width="2000" position="0 0 -32"></a-plane>
-            <a-text value="Loading the experience" align="center" position="0 0 -32">
-        </a-entity> -->
 
         <!-- This should always be placed at the end of the scene-->
-        <a-camera class="camera" position="0 0 -30">
+        <a-camera class="camera">
             <a-cursor color="white"></a-cursor>
         </a-camera>
     </a-scene>
