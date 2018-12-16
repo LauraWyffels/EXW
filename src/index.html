@@ -20,6 +20,7 @@
     <script src="js/components/Log.js"></script>
     <script src="js/components/ChangeColorOnHover.js"></script>
     <script src="js/components/sceneHandler.js"></script>
+    <script src="js/components/LoadingScreen.js"></script>
 </head>
 
 <body>
@@ -32,7 +33,7 @@
 
         <!-- Basic scenery -->
         <a-sky log="Sky added to scene 1" src="#sky"></a-sky>
-        <audio src="assets/sounds/engine.mp3" autoplay="true"></audio>
+        <!-- <audio src="assets/sounds/engine.mp3" autoplay="true"></audio> -->
 
         <a-entity class="airplane">
             <a-entity obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)" position="0 -5 -61.3"
@@ -53,12 +54,7 @@
             </a-plane>
         </a-text>
 
-        <!-- Gazing/clicking at object TEST-->
-        <!-- <a-box class="arrowFront" color="#EF2D5E" position="0 -3 -10" scale=".2 .1 1" change-color-on-hover="color: blue">
-            <a-event name="mouseenter" scale="1.2 .5 1.2"></a-event>
-        </a-box> -->
-
-        <a-entity class="loader">
+        <a-entity loading-screen>
             <a-plane color="#000" height="2000" width="2000" position="0 0 -32"></a-plane>
             <a-text value="Loading the experience" align="center" position="0 0 -32">
         </a-entity>
