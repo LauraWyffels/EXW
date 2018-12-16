@@ -19,6 +19,7 @@
     <script src="js/components/sceneHandler.js"></script>
     <script src="js/components/LoadingScreen.js"></script>
     <script src="js/components/CrashPlane.js"></script>
+    <script src="js/components/FindBomb.js"></script>
 </head>
 
 <body>
@@ -27,6 +28,19 @@
             <img id="sky" src="assets/images/sky.jpg">
 
             <script id="crashAnimation" type="text/html">
+                <a-animation attribute="position"
+                    easing="ease-in"
+                    dur="${duration}"
+                    to="${position}">
+                </a-animation>
+                <a-animation attribute="rotation"
+                    easing="ease-in"
+                    dur="${duration}"
+                    to="${rotation}">
+                </a-animation>
+            </script>
+
+            <script id="walkAnimation" type="text/html">
                 <a-animation attribute="position"
                     easing="ease-in"
                     dur="${duration}"
@@ -47,14 +61,15 @@
         <!-- <audio src="assets/sounds/engine.mp3" autoplay="true"></audio> -->
 
         <a-entity>
-            <a-entity class="plane-part" obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)" position="0 -5 -22"
-                scale=".04 .04 -.04"></a-entity>
+            <a-entity class="plane-part" obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)"
+                position="0 -5 -22" scale=".04 .04 -.04"></a-entity>
             <a-entity class="plane-part" obj-model="obj: url(assets/objects/airplane_inside.obj); mtl: url(assets/objects/airplane_inside.mtl)"
                 scale="1 -1 1" position="0 0 40"></a-entity>
         </a-entity>
 
-        <a-entity class="crash-button" crash-plane>
-            <a-box opacity="0.8" change-color-on-hover="opacity: 1" color="green" position="0 3 -4" depth="2" height="1" width="1"></a-box>
+        <a-entity crash-plane>
+            <a-box opacity="0.8" change-color-on-hover="opacity: 1" color="green" position="0 3 -4" depth="2" height="1"
+                width="1"></a-box>
         </a-entity>
 
         <a-entity class="bomb" audiohandler visible="true" position="0 0 -30">
@@ -67,18 +82,21 @@
         <a-entity id="popupText1" visible="true" visible="visible: false">
             <a-text value="Attention! \n \n There is a bomb on board..." align="center" geometry="primitive: plane; width: 3; height: 2;"
                 material="color: black; opacity: 0.5" position="0 0 -3" color="white">
-                <a-plane id="disarm" scenehandler color="#EF2D5E" position="-0.75 -0.75 0.01" width="1.5" height="0.5"
+
+                <a-plane findbomb id="disarm" color="#EF2D5E" position="-0.75 -0.75 0.01" width="1.5" height="0.5"
                     change-color-on-hover="color: blue">
                     <a-text align="center" color="white" value="Disarm the bomb" wrap-count="65"></a-text>
                 </a-plane>
-                <a-plane id="getOut" scenehandler color="#EF2D5E" position="0.75 -0.75 0.01" width="1.5" height="0.5 change-color-on-hover="
+
+                <a-plane findbomb id="getOut" color="#EF2D5E" position="0.75 -0.75 0.01" width="1.5" height="0.5 change-color-on-hover="
                     color: blue">
                     <a-text color="white" align="center" value="Get the hell out!" wrap-count="65"></a-text>
                 </a-plane>
+
             </a-text>
         </a-entity>
 
-        <a-entity id="popupText2" scenehandler visible="false" visible="visible: true">
+        <!-- <a-entity id="popupText2" scenehandler visible="false" visible="visible: true">
             <a-text value="You found the bomb! \n \n Cut one of the wires" align="center" geometry="primitive: plane; width: 3; height: 2;"
                 material="color: black; opacity: 0.5" position=" 0 0 -3" color="white">
                 <a-plane id="redWire" color="#EF2D5E" position="-0.75 -0.75 0.01" width="1.5" height="0.5"
@@ -108,18 +126,14 @@
         <a-entity loading-screen>
             <a-plane color="#000" height="2000" width="2000" position="0 0 -2.1"></a-plane>
             <a-text value="Loading the experience" align="center" position="0 0 -2">
-                <a-animation attribute="opacity"
-                dur="10000"
-                to="1" ></a-animation>
-                <a-animation attribute="scale"
-                dur="10000"
-                to="1.2 1.2 1.2" ></a-animation>
+                <a-animation attribute="opacity" dur="10000" to="1"></a-animation>
+                <a-animation attribute="scale" dur="10000" to="1.2 1.2 1.2"></a-animation>
             </a-text>
-        </a-entity>
+        </a-entity> -->
 
         <!-- This should always be placed at the end of the scene-->
         <a-camera class="camera">
-            <a-cursor color="white" ></a-cursor>
+            <a-cursor color="white"></a-cursor>
         </a-camera>
     </a-scene>
 
