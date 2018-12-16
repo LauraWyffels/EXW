@@ -1,6 +1,6 @@
 AFRAME.registerComponent(`timer`, {
     init() {
-        const randomAmountOfMinutes = Math.floor(Math.random() * (6 - 3)) + 3;
+        const randomAmountOfMinutes = Math.floor(Math.random() * (2 - 1)) + 1;
         const counter = document.querySelector(`.timer`);
 
         let resterendeTijd = (randomAmountOfMinutes * 60);
@@ -15,8 +15,19 @@ AFRAME.registerComponent(`timer`, {
                 clearInterval();
                 counter.setAttribute(`value`, `00:00`);
                 counter.setAttribute(`template`, `src: #blink`);
+                
+                // crash plane
+                const planeParts = [...document.querySelectorAll(`.plane-part`)];
+                const sky = document.querySelector(`.sky`);
+                const bomb = document.querySelector(`.bomb`);
+                
+                [...planeParts, sky, bomb].forEach(part => {
+                    part.setAttribute(`template`, `src: #crashAnimation`);
+                });
 
-                // STOP GAME
+                // remove all pop-ups
+                [...document.querySelectorAll(`.popup-text`)].forEach(popup => popup.setAttribute(`visible`, `false`));
+                
             }
         }, 1000);   
     }

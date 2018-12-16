@@ -9,10 +9,7 @@ AFRAME.registerComponent(`jump`, {
 });
 
 const handleClickJump = () => {
-
     const fallingObjects = [...document.querySelectorAll(`.falling-object`)];
-
-
     fallingObjects.forEach(obj => obj.setAttribute(`template`, `src: #walkFrontAnimation`));
     setTimeout(() => {
         fallingObjects.forEach(obj => obj.setAttribute(`template`, `src: #walkLeftAnimation`));
@@ -22,7 +19,6 @@ const handleClickJump = () => {
                 const $audio = document.getElementById(`aaaah`);
                 $audio.play();
                 setTimeout(() => {
-                    const data = this.data;
                     const $sky = document.querySelector(`.sky`);
                     $sky.setAttribute(`visible`, data.visible);
                 }, 6000)
