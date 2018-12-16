@@ -21,11 +21,6 @@ const handleClickJump = () => {
             setTimeout(() => {
                 const $audio = document.getElementById(`aaaah`);
                 $audio.play();
-                setTimeout(() => {
-                    const data = this.data;
-                    const $sky = document.querySelector(`.sky`);
-                    $sky.setAttribute(`visible`, data.visible);
-                }, 6000)
             }, 1000);
         }, 2000)
     }, 5000)
