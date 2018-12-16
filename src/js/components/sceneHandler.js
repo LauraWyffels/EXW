@@ -1,35 +1,15 @@
 AFRAME.registerComponent(`scenehandler`, {
   schema: {
-    visible: { default: `false` }
+    visible: {default: `false`}
   },
   init() {
     const data = this.data;
+    const $el = this.el; // pop-up
 
-    // popupText1
-
-    const $popUp = document.getElementById(`popupText1`);
-    const $disarm = document.getElementById(`disarm`);
-    const $getOut = document.getElementById(`getOut`);
-
-    $disarm.addEventListener(`click`, () => {
-      $popUp.setAttribute(`visible`, data.visible);
-    });
-    $getOut.addEventListener(`click`, () => {
-      $popUp.setAttribute(`visible`, data.visible);
-    });
-
-    // popupText2
-
-    const $popUp2 = document.getElementById(`popupText2`);
-    const $redWire = document.getElementById(`redWire`);
-    const $blueWire = document.getElementById(`blueWire`);
-
-    $redWire.addEventListener(`click`, () => {
-      $popUp2.setAttribute(`visible`, data.visible);
-    });
-    $blueWire.addEventListener(`click`, () => {
-      $popUp2.setAttribute(`visible`, data.visible);
-    });
-
+    const $buttons = [...$el.querySelectorAll(`.popup-button`)];
+    $buttons.forEach($button => {
+      $button.addEventListener(`click`, () => $el.setAttribute(`visible`, data.visible));
+    })
   }
 });
+

@@ -3,7 +3,7 @@ AFRAME.registerComponent(`disarm`, {
     this.el.addEventListener(`click`, () => {
       if (window.location = `disarmBomb.html`) {
         const $bomb = document.querySelector(`.bomb`);
-        $bomb.setAttribute(`visable`, fales);
+        $bomb.setAttribute(`visible`, false);
       }
 
     });
