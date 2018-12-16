@@ -22,4 +22,6 @@ const handleClickJump = () => {
         }, 2000)
     }, 5000)
 
+    // hide timer
+    document.querySelector(`.timer`).parentNode.setAttribute(`position`, `3000 3000 3000`);
 };
