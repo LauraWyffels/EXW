@@ -24,6 +24,8 @@
     <script src="js/components/Timer.js"></script>
     <script src="js/components/PopupTrue.js"></script>
     <script src="js/components/blueWire.js"></script>
+    <script src="js/components/redWire.js"></script>
+    <script src="js/components/landing.js"></script>
 </head>
 
 <body>
@@ -84,43 +86,63 @@
                     to="1">
                 </a-animation>
             </script>
+            <script id="landAnimation" type="text/html">
+                <a-animation attribute="position"
+                delay="0"
+                easing="ease"
+                dur="${lduration}"
+                to="${lposition}">
+                </a-animation>
+            </script>
+            <script id="sitInCockPitAnimation" type="text/html">
+                <a-animation attribute="position"
+                delay="0"
+                easing="ease"
+                dur="${sduration}"
+                to="${sposition}">
+                </a-animation>
+            </script>
         </a-assets>
 
         <!-- Audio -->
-        <!-- <audio src="assets/sounds/engine.mp3" autoplay="true"></audio> -->
+        <audio src="assets/sounds/engine.mp3" autoplay="true"></audio>
         <audio id="crashSound" src="assets/sounds/crash.mp3"></audio>
 
         <!-- Basic scenery -->
         <a-sky class="sky falling-object" jump="visible: false;" bluewire="visible: false;" src="#sky" data-cduration="15000"
             data-cposition="0 4600 -1000" data-crotation="0 0 1100" data-jduration="6000" data-jposition="0 4600 0"
             data-wfduration="5000" data-wfposition="0 0 -10" data-wlduration="1000" data-wlposition="10 0 -10"
-            data-wtcduration="5000" data-wtcposition="0 0 -12">
+            data-wtcduration="5000" data-wtcposition="0 0 -12" data-lduration="10000" data-lposition="-800 4800 0">
         </a-sky>
 
         <!-- Airplane -->
         <a-entity class="airplane" position="0 0 0" bluewire="visible: false;">
             <a-entity class="plane-part falling-object" obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)"
-                position="0 -5 -22" scale=".04 .04 -.04" data-cduration="15000" data-cposition="5 5 -5" data-crotation="-10 90 3000"
-                data-jduration="6000" data-jposition="40 4800 5" data-wfduration="5000" data-wfposition="0 -5 5"
-                data-wlduration="1000" data-wlposition="10 -5 5" data-wtcduration="5000" data-wtcposition="0 -5 13">
+                position="0 -5 -22" scale=".04 .04 -.04" 
+                data-cduration="15000" data-cposition="5 5 -5" data-crotation="-10 90 3000"
+                data-jduration="6000" data-jposition="40 4800 5" 
+                data-wfduration="5000" data-wfposition="0 -5 5"
+                data-wlduration="1000" data-wlposition="10 -5 5" 
+                data-wtcduration="5000" data-wtcposition="0 -5 13">
             </a-entity>
             <a-entity class="plane-part falling-object" obj-model="obj: url(assets/objects/airplane_inside.obj); mtl: url(assets/objects/airplane_inside.mtl)"
-                scale="1 -1 1" position="0 0 40" data-cduration="15000" data-cposition="5 5 -15" data-crotation="-180 0 3000"
-                data-jduration="6000" data-jposition="40 4800 67" data-wfduration="5000" data-wfposition="0 0 67"
-                data-wlduration="1000" data-wlposition="10 0 67" data-wtcduration="5000" data-wtcposition="0 0 74">
+                scale="1 -1 1" position="0 0 40" 
+                data-cduration="15000" data-cposition="5 5 -15" data-crotation="-180 0 3000"
+                data-jduration="6000" data-jposition="40 4800 67" 
+                data-wfduration="5000" data-wfposition="0 0 67"
+                data-wlduration="1000" data-wlposition="10 0 67" 
+                data-wtcduration="5000" data-wtcposition="0 0 74">
             </a-entity>
             <audio id="aaaah" src="assets/sounds/aaaah.mp3"></audio>
-        <a-entity>
+            <a-entity>
 
         <!-- Bomb -->
         <a-entity>
-            <a-entity bomb class="bomb falling-object" obj-model="obj: url(assets/objects/bomb.obj); mtl: url(assets/objects/bomb.mtl)"
-                position="0 -5 -20" scale=".04 .04 -.04"
-                data-cduration="3000" data-cposition="5 5 -5" data-crotation="90 180 360"
-                data-jduration="6000" data-jposition="40 4800 -5" 
-                data-wfduration="5000" data-wfposition="0 -5 5"
-                data-wlduration="1000" data-wlposition="10 -5 5" 
-                data-wtcduration="5000" data-wtcposition="0 -5 13"></a-entity>
+            <a-entity bomb class="bomb falling-object" visible="true" redwire="visible: false;" obj-model="obj: url(assets/objects/bomb.obj); mtl: url(assets/objects/bomb.mtl)"
+                position="0 -5 -20" scale=".04 .04 -.04" data-cduration="3000" data-cposition="5 5 -5"
+                data-crotation="90 180 360" data-jduration="6000" data-jposition="40 4800 -5" data-wfduration="5000"
+                data-wfposition="0 -5 5" data-wlduration="1000" data-wlposition="10 -5 5" data-wtcduration="5000"
+                data-wtcposition="0 -5 11.5"></a-entity>
             <a-entity id="explosion" position="-7 -8 -15" particle-system="preset: stars; texture: ./assets/images/particle.png;  accelerationSpread: 50 50 50; blending: 2; color: #FFF; dur: 0.5;"></a-entity>
             <audio id="bombSound" src="assets/sounds/explosion.mp3"></audio>
         </a-entity>
@@ -128,6 +150,12 @@
         <!-- Crash button -->
         <a-entity class="crash-button" crash-plane>
             <a-box opacity="0.8" change-color-on-hover="color: yellow" color="green" position="0 3 -4" depth="2"
+                height="1" width="1"></a-box>
+        </a-entity>
+
+        <!-- Land button -->
+        <a-entity class="land-button" landing>
+            <a-box opacity="0.8" change-color-on-hover="color: yellow" color="green" position="-2 3 -4" depth="2"
                 height="1" width="1"></a-box>
         </a-entity>
 
@@ -162,7 +190,7 @@
                 material="color: black; opacity: 0.5" position=" 0 0 -3" color="white">
 
                 <!-- Option -->
-                <a-plane class="popup-button" redWire id="redWire" color="#EF2D5E" position="-0.75 -0.75 0.01"
+                <a-plane class="popup-button redWireButton" redWire id="redWire" color="#EF2D5E" position="-0.75 -0.75 0.01"
                     width="1.5" height="0.5" change-color-on-hover="color: blue">
                     <a-text align="center" color="white" value="Red wire" wrap-count="65"></a-text>
                 </a-plane>
@@ -210,5 +238,3 @@
 
     <script src="js/script.js"></script>
 </body>
-
-</html>

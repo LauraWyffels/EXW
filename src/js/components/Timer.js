@@ -7,7 +7,8 @@ AFRAME.registerComponent(`timer`, {
 
         let resterendeTijd = (randomAmountOfMinutes * 60);
 
-        setInterval( () => {
+
+        setInterval(() => {
             resterendeTijd -= 1;
             const m = Math.floor(resterendeTijd / 60);
             const s = Math.floor(resterendeTijd % 60);
@@ -24,18 +25,18 @@ AFRAME.registerComponent(`timer`, {
                 const planeParts = [...document.querySelectorAll(`.plane-part`)];
                 const sky = document.querySelector(`.sky`);
                 const bomb = document.querySelector(`.bomb`);
-                
+
                 [...planeParts, sky, bomb].forEach(part => {
                     part.setAttribute(`template`, `src: #crashAnimation`);
                 });
-                
+
                 // remove all pop-ups
                 [...document.querySelectorAll(`.popup-text`)].forEach(popup => popup.setAttribute(`visible`, `false`));   
             }
-        }, 1000);   
+        }, 1000);
     },
     tick() {
-        if(gameOver) {
+        if (gameOver) {
             const $audio = document.getElementById(`bombSound`);
             $audio.play();
             const $audio2 = document.getElementById(`crashSound`);
