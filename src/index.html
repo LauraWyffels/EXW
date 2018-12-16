@@ -23,13 +23,14 @@
     <script src="js/components/Jump.js"></script>
     <script src="js/components/FindBomb.js"></script>
     <script src="js/components/bomb.js"></script>
+    <script src="js/components/Timer.js"></script>
 </head>
 
 <body>
-    <a-scene stats>
+    <a-scene>
         <a-assets>
             <!-- images -->
-            <img id="sky" src="assets/images/sky.jpg">
+            <img id="sky" src="assets/images/sky.jpg" shader="flat">
 
             <!-- animations -->
             <script id="crashAnimation" type="text/html">
@@ -74,10 +75,19 @@
                     to="${jposition}">
                 </a-animation>
             </script>
+            <script id="blink" type="text/html">
+                <a-animation attribute="opacity"
+                    repeat="5"
+                    easing="linear"
+                    dur="1000"
+                    from="0"
+                    to="1">
+                </a-animation>
+            </script>
         </a-assets>
 
         <!-- Audio -->
-        <audio src="assets/sounds/engine.mp3" autoplay="true"></audio>
+        <!-- <audio src="assets/sounds/engine.mp3" autoplay="true"></audio> -->
 
         <!-- Basic scenery -->
         <a-sky class="sky falling-object" log="Sky added to scene 1" src="#sky" data-cduration="5000" data-cposition="0 4600 -1000"
@@ -119,6 +129,12 @@
             <a-box opacity="0.8" change-color-on-hover="color: yellow" color="green" position="0 3 -4" depth="2"
                 height="1" width="1"></a-box>
         </a-entity>
+
+        <!-- Timer -->
+        <a-plane color="#333" position="0 2 -3" width="1" height=".4">
+            <a-text timer class="timer" align="center" color="red" value="00:00" wrap-count="65"></a-text>
+        </a-plane>
+
 
         <!-- Pop-up 1 -->
         <a-entity class="popup-text" id="popupText1" popuphandler="visible: false;">
@@ -178,12 +194,12 @@
         </a-entity>
 
         <!-- <a-entity loading-screen>
-        <a-plane color="#000" height="2000" width="2000" position="0 0 -2.1"></a-plane>
+            <a-plane color="#000" height="2000" width="2000" position="0 0 -2.1"></a-plane>
             <a-text value="Loading the experience" align="center" position="0 0 -2">
                 <a-animation attribute="opacity" dur="10000" to="1"></a-animation>
                 <a-animation attribute="scale" dur="10000" to="1.2 1.2 1.2"></a-animation>
             </a-text>
-        </a-entity>-->
+        </a-entity> -->
 
         <!-- This should always be placed at the end of the scene-->
         <a-camera class="camera">
