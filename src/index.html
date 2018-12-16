@@ -22,6 +22,7 @@
     <script src="js/components/CrashPlane.js"></script>
     <script src="js/components/Jump.js"></script>
     <script src="js/components/FindBomb.js"></script>
+    <script src="js/components/bomb.js"></script>
 </head>
 
 <body>
@@ -101,10 +102,10 @@
 
                 <!-- Bomb -->
                 <a-entity>
-                    <a-entity class="bomb falling-object" data-cduration="3000" data-cposition="5 5 -5" data-crotation="90 180 360"
-                        data-jduration="6000" data-jposition="0 3000 -15" data-wfduration="5000" data-wfposition="0 -5 -15"
-                        data-wlduration="1000" data-wlposition="0 -5 3" data-wtcduration="5000" data-wtcposition="0 -5 11"
-                        position="0 -5 -20" obj-model="obj: url(assets/objects/bomb.obj); mtl: url(assets/objects/bomb.mtl)"
+                    <a-entity bomb class="bomb falling-object" data-cduration="3000" data-cposition="5 5 -5"
+                        data-crotation="90 180 360" data-jduration="6000" data-jposition="0 3000 -15" data-wfduration="5000"
+                        data-wfposition="0 -5 -15" data-wlduration="1000" data-wlposition="0 -5 3" data-wtcduration="5000"
+                        data-wtcposition="0 -5 11" position="0 -5 -20" obj-model="obj: url(assets/objects/bomb.obj); mtl: url(assets/objects/bomb.mtl)"
                         scale=".04 .04 -.04"></a-entity>
                     <a-entity id="explosion" position="-7 -8 -15" particle-system="preset: stars; texture: ./assets/images/particle.png;  accelerationSpread: 50 50 50; blending: 2; color: #FFF; dur: 0.5;"></a-entity>
                     <audio id="bombSound" src="assets/sounds/explosion.mp3"></audio>
@@ -136,7 +137,7 @@
                 </a-entity>
 
                 <!-- Pop-up 2 -->
-                <a-entity class="popup-text" id="popupText2" visible="false" popuphandler="visible: false;">
+                <a-entity class="popup-text" id="popupText2" visible="false" bomb="visible: true;">
                     <a-text value="You found the bomb! \n \n Cut one of the wires" align="center" geometry="primitive: plane; width: 3; height: 2;"
                         material="color: black; opacity: 0.5" position=" 0 0 -3" color="white">
 
