@@ -24,6 +24,8 @@
     <script src="js/components/FindBomb.js"></script>
     <script src="js/components/bomb.js"></script>
     <script src="js/components/Timer.js"></script>
+    <script src="js/components/PopupTrue.js"></script>
+    <script src="js/components/blueWire.js"></script>
 </head>
 
 <body>
@@ -90,14 +92,14 @@
         <!-- <audio src="assets/sounds/engine.mp3" autoplay="true"></audio> -->
 
         <!-- Basic scenery -->
-        <a-sky class="sky falling-object" log="Sky added to scene 1" src="#sky" data-cduration="5000" data-cposition="0 4600 -1000"
-            data-crotation="0 0 1100" data-jduration="6000" data-jposition="0 4600 0" data-wfduration="5000"
-            data-wfposition="0 0 -10" data-wlduration="1000" data-wlposition="10 0 -10" data-wtcduration="5000"
-            data-wtcposition="0 0 -12">
+        <a-sky class="sky falling-object" jump="visible: false;" bluewire="visible: false;" src="#sky" data-cduration="5000"
+            data-cposition="0 4600 -1000" data-crotation="0 0 1100" data-jduration="6000" data-jposition="0 4600 0"
+            data-wfduration="5000" data-wfposition="0 0 -10" data-wlduration="1000" data-wlposition="10 0 -10"
+            data-wtcduration="5000" data-wtcposition="0 0 -12">
         </a-sky>
 
         <!-- Airplane -->
-        <a-entity class="airplane" position="0 0 0">
+        <a-entity class="airplane" position="0 0 0" bluewire="visible: false;">
             <a-entity class="plane-part falling-object" obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)"
                 position="0 -5 -22" scale=".04 .04 -.04" data-cduration="5000" data-cposition="5 5 -5" data-crotation="-10 90 3000"
                 data-jduration="6000" data-jposition="40 4800 5" data-wfduration="5000" data-wfposition="0 -5 5"
@@ -144,7 +146,7 @@
                 <!-- Option -->
                 <a-plane class="popup-button" findbomb id="disarm" color="#EF2D5E" position="-0.75 -0.75 0.01"
                     width="1.5" height="0.5" change-color-on-hover="color: blue">
-                    <a-text align="center" color="white" value="Disarm the bomb" wrap-count="65"></a-text>
+                    <a-text align="center" color="white" value="Find the bomb" wrap-count="65"></a-text>
                 </a-plane>
 
                 <!-- Option -->
@@ -156,19 +158,19 @@
         </a-entity>
 
         <!-- Pop-up 2 -->
-        <a-entity class="popup-text" id="popupText2" visible="false" bomb="visible: true;">
+        <a-entity class="popup-text" id="popupText2" visible="false" bomb="visible: true;" popuphandler="visible: false;">
             <a-text value="You found the bomb! \n \n Cut one of the wires" align="center" geometry="primitive: plane; width: 3; height: 2;"
                 material="color: black; opacity: 0.5" position=" 0 0 -3" color="white">
 
                 <!-- Option -->
-                <a-plane class="popup-button" id="redWire" color="#EF2D5E" position="-0.75 -0.75 0.01" width="1.5"
-                    height="0.5" change-color-on-hover="color: blue">
+                <a-plane class="popup-button" redWire id="redWire" color="#EF2D5E" position="-0.75 -0.75 0.01"
+                    width="1.5" height="0.5" change-color-on-hover="color: blue">
                     <a-text align="center" color="white" value="Red wire" wrap-count="65"></a-text>
                 </a-plane>
 
                 <!-- Option -->
-                <a-plane class="popup-button" id="blueWire" color="#EF2D5E" position="0.75 -0.75 0.01" width="1.5"
-                    height="0.5" change-color-on-hover="color: blue">
+                <a-plane class="popup-button blueWireButton" blueWire id="blueWire" color="#EF2D5E" position="0.75 -0.75 0.01"
+                    width="1.5" height="0.5" change-color-on-hover="color: blue">
                     <a-text color="white" align="center" value="Blue wire" wrap-count="65"></a-text>
                 </a-plane>
             </a-text>
@@ -201,10 +203,10 @@
             </a-text>
         </a-entity> -->
 
-        <!-- This should always be placed at the end of the scene-->
-        <a-camera class="camera">
-            <a-cursor color="white"></a-cursor>
-        </a-camera>
+                <!-- This should always be placed at the end of the scene-->
+                <a-camera class="camera">
+                    <a-cursor color="white"></a-cursor>
+                </a-camera>
     </a-scene>
 
     <script src="js/script.js"></script>
