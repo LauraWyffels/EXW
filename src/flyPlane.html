@@ -12,53 +12,61 @@
     <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component/dist/aframe-template-component.min.js"></script>
 
     <!-- Custom A-frame components -->
     <script src="js/components/Log.js"></script>
     <script src="js/components/ChangeColorOnHover.js"></script>
-    <script src="js/components/audioHandler.js"></script>
-    <script src="js/components/scenehandler.js"></script>
 </head>
 
 <body>
-    <!-- SCENE 2: explosion-->
-    <a-scene log="Scene 2 added">
+    <!-- SCENE 1 -->
+    <a-scene log="Scene 1 added">
         <a-assets>
             <!-- Images -->
             <img id="sky" src="assets/images/sky.jpg">
 
+            <!-- Animations -->
+            <script id="crashAnimation" type="text/html">
+                <a-animation attribute="position"
+                    easing="ease-in"
+                    dur="${duration}"
+                    to="${position}"
+                    delay="${delay}"></a-animation>
+                <a-animation attribute="rotation"
+                    easing="ease-in"
+                    dur="${duration}"
+                    to="${rotation}"
+                    delay="${delay}"></a-animation>
+            </script>
         </a-assets>
 
-        <a-sky log="Sky added to scene 2" src="#sky"></a-sky>
+        <!-- Basic scenery -->
+        <a-sky log="Sky added to scene 1" src="#sky" template="src: #crashAnimation" data-delay="10" data-duration="20000"
+            data-position="0 0 4000" data-rotation="0 -50 0"></a-sky>
         <!-- <audio src="assets/sounds/engine.mp3" autoplay="true"></audio> -->
 
-        <a-entity class="airplane" position="0 0 72">
+        <a-entity class="airplane" position="2 -2 82">
             <a-entity obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)" position="0 -5 -61.3"
                 scale=".04 .04 -.04"></a-entity>
             <a-entity obj-model="obj: url(assets/objects/airplane_inside.obj); mtl: url(assets/objects/airplane_inside.mtl)"
                 scale="1 -1 1" position="0 0 0"></a-entity>
         </a-entity>
 
-        <a-entity class="bomb" audiohandler visible="true">
-            <a-entity obj-model="obj: url(assets/objects/bomb.obj); mtl: url(assets/objects/bomb.mtl)" position="0 -5 10"
-                scale=".04 .04 -.04"></a-entity>
-            <a-entity id="explosion" position="-7 -8 -15" particle-system="preset: stars; texture: ./assets/images/particle.png;  accelerationSpread: 50 50 50; blending: 2; color: #FFF; dur: 0.5;"></a-entity>
-            <audio id="bombSound" src="assets/sounds/explosion.mp3"></audio>
-        </a-entity>
-
-        <a-text id="popupText2" value="You found the bomb! \n \n Cut one of the wires" align="center" geometry="primitive: plane; width: 3; height: 2;"
+        <a-text id="popupText3" value="Fly the plane! \n" align="center" geometry="primitive: plane; width: 3; height: 2;"
             material="color: black; opacity: 0.5" position=" 0 0 -3" color="white">
             <a-plane scenehandler color="#EF2D5E" position="-0.75 -0.75 0.01" width="1.5" height="0.5"
                 change-color-on-hover="color: blue">
-                <a-text align="center" color="white" value="Red wire" wrap-count="65"></a-text>
+                <a-text align="center" color="white" value="Go right" wrap-count="65"></a-text>
             </a-plane>
             <a-plane color="#EF2D5E" position="0.75 -0.75 0.01" width="1.5" height="0.5" change-color-on-hover="color: blue">
-                <a-text color="white" align="center" value="Blue wire" wrap-count="65"></a-text>
+                <a-text color="white" align="center" value="Go left" wrap-count="65"></a-text>
             </a-plane>
         </a-text>
 
-        <a-camera>
-            <a-cursor></a-cursor>
+        <!-- This should always be placed at the end of the scene-->
+        <a-camera class="camera">
+            <a-cursor color="white"></a-cursor>
         </a-camera>
     </a-scene>
 

@@ -1,10 +1,15 @@
 {
   // HTML Objects
-  const popup1 = document.getElementById(`popupText1`);
 
-  // var explosionSound = document.getElementById("bomb");
-  // entity.audio.sound.playSound();
 
+
+  const handlePopup = () => {
+    const $popup1 = document.getElementById(`popupText1`);
+    setInterval(() => {
+
+
+    }, 10000);
+  }
 
   const handleLoadingScreen = () => {
     const $loader = document.querySelector(`.loader`);
@@ -12,11 +17,12 @@
       $loader.parentElement.removeChild($loader);
     }, 10000);
   };
-  
+
   const init = () => {
     if (document.querySelector(`.loader`)) {
       handleLoadingScreen();
     }
+    handlePopup();
   };
 
   init();
