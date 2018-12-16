@@ -8,7 +8,6 @@ AFRAME.registerComponent(`bomb`, {
     const $bomb = document.querySelector(`.bomb`);
 
     $bomb.addEventListener(`click`, () => {
-
       $popUp2.setAttribute(`visible`, data.visible);
     });
 
