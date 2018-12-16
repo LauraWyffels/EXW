@@ -7,17 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>An Extraordinary Airplane Flight</title>
 
-    <link href='css/reset.css' rel='stylesheet' type='text/css'>
-    <link href='css/style.css' rel='stylesheet' type='text/css'>
+    <link href='../css/reset.css' rel='stylesheet' type='text/css'>
+    <link href='../css/style.css' rel='stylesheet' type='text/css'>
     <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
 
     <!-- Custom A-frame components -->
-    <script src="js/components/Log.js"></script>
-    <script src="js/components/ChangeColorOnHover.js"></script>
-    <script src="js/components/audioHandler.js"></script>
-    <script src="js/components/scenehandler.js"></script>
+    <script src="../js/components/Log.js"></script>
+    <script src="../js/components/ChangeColorOnHover.js"></script>
+    <script src="../js/components/audioHandler.js"></script>
+    <script src="../js/components/scenehandler.js"></script>
 </head>
 
 <body>
@@ -25,27 +25,28 @@
     <a-scene log="Scene 2 added">
         <a-assets>
             <!-- Images -->
-            <img id="sky" src="assets/images/sky.jpg">
-
+            <img id="sky" src="../assets/images/sky.jpg">
+            <!-- Audio -->
+            <audio id="bombSound" src="../assets/sounds/explosion.mp3"></audio>
         </a-assets>
 
         <a-sky log="Sky added to scene 2" src="#sky"></a-sky>
-        <audio src="assets/sounds/engine.mp3" autoplay="true"></audio>
+        <audio src="../assets/sounds/engine.mp3" autoplay="true"></audio>
 
         <a-entity class="airplane">
-            <a-entity obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)" position="0 -5 -61.3"
-                scale=".04 .04 -.04"></a-entity>
-            <a-entity obj-model="obj: url(assets/objects/airplane_inside.obj); mtl: url(assets/objects/airplane_inside.mtl)"
-                scale="1 -1 1" position="0 0 0"></a-entity>
+            <a-entity obj-model="obj: url(../assets/objects/plane.obj); mtl: url(../assets/objects/plane.mtl)" position="0 -5 -61.3"
+                scale=".04 .04 -.04" template="src: #crashAnimation" data-delay="15000" data-duration="5000"
+                data-position="5 5 -5" data-rotation="-10 0 3000"></a-entity>
+            <a-entity obj-model="obj: url(../assets/objects/airplane_inside.obj); mtl: url(../assets/objects/airplane_inside.mtl)"
+                scale="1 -1 1" position="0 0 0" template="src: #crashAnimation" data-delay="15000" data-duration="5000"
+                data-position="5 5 -5" data-rotation="-180 0 3000"></a-entity>
         </a-entity>
 
         <a-entity>
-            <a-entity audiohandler obj-model="obj: url(assets/objects/bomb.obj); mtl: url(assets/objects/bomb.mtl)"
-                position="0 -5 10" scale=".04 .04 -.04"></a-entity>
-
+            <a-entity audiohandler="soundName: bombSound" obj-model="obj: url(../assets/objects/bomb.obj); mtl: url(../assets/objects/bomb.mtl)"
+                position="0 -5 -61" scale=".04 .04 -.04"></a-entity>
             <!-- <a-entity id="explosion" position="-7 -8 -15" particle-system="preset: stars; texture: ./assets/images/particle.png;  accelerationSpread: 50 50 50; blending: 2; color: #FFF; dur: 0.5;"
-                enable="false"></a-entity> -->
-            <audio id="bombSound" src="assets/sounds/explosion.mp3"></audio>
+                enable="false"></a-entity> --> 
         </a-entity>
 
         <a-text id="popupText2" value="You found the bomb! \n \n Cut one of the wires" align="center" geometry="primitive: plane; width: 3; height: 2;"
@@ -59,12 +60,12 @@
             </a-plane>
         </a-text>
 
-        <a-camera>
-            <a-cursor></a-cursor>
+        <a-camera class="camera" position="0 0 -72">
+            <a-cursor color="white"></a-cursor>
         </a-camera>
     </a-scene>
 
-    <script src="js/script.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 
 </html>

@@ -7,16 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>An Extraordinary Airplane Flight</title>
 
-    <link href='css/reset.css' rel='stylesheet' type='text/css'>
-    <link href='css/style.css' rel='stylesheet' type='text/css'>
+    <link href='../css/reset.css' rel='stylesheet' type='text/css'>
+    <link href='../css/style.css' rel='stylesheet' type='text/css'>
     <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component/dist/aframe-template-component.min.js"></script>
 
     <!-- Custom A-frame components -->
-    <script src="js/components/Log.js"></script>
-    <script src="js/components/ChangeColorOnHover.js"></script>
+    <script src="../js/components/Log.js"></script>
+    <script src="../js/components/ChangeColorOnHover.js"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
     <a-scene log="Scene 1 added">
         <a-assets>
             <!-- Images -->
-            <img id="sky" src="assets/images/sky.jpg">
+            <img id="sky" src="../assets/images/sky.jpg">
 
             <!-- Animations -->
             <script id="crashAnimation" type="text/html">
@@ -44,19 +44,19 @@
         <!-- Basic scenery -->
         <a-sky log="Sky added to scene 1" src="#sky" template="src: #crashAnimation" data-delay="15000" data-duration="5000"
             data-position="0 4500 -1000" data-rotation="0 0 1100"></a-sky>
-        <audio src="assets/sounds/engine.mp3" autoplay="true"></audio>
+        <audio src="../assets/sounds/engine.mp3" autoplay="true"></audio>
 
         <a-entity class="airplane">
-            <a-entity obj-model="obj: url(assets/objects/plane.obj); mtl: url(assets/objects/plane.mtl)" position="0 -5 -61.3"
+            <a-entity obj-model="obj: url(../assets/objects/plane.obj); mtl: url(../assets/objects/plane.mtl)" position="0 -5 -61.3"
                 scale=".04 .04 -.04" template="src: #crashAnimation" data-delay="15000" data-duration="5000"
                 data-position="5 5 -5" data-rotation="-10 0 3000"></a-entity>
-            <a-entity obj-model="obj: url(assets/objects/airplane_inside.obj); mtl: url(assets/objects/airplane_inside.mtl)"
+            <a-entity obj-model="obj: url(../assets/objects/airplane_inside.obj); mtl: url(../assets/objects/airplane_inside.mtl)"
                 scale="1 -1 1" position="0 0 0" template="src: #crashAnimation" data-delay="15000" data-duration="5000"
                 data-position="5 5 -5" data-rotation="-180 0 3000"></a-entity>
         </a-entity>
 
-        <!-- This should always be placed at the end of the scene-->
-        <a-camera class="camera">
+            
+        <a-camera class="camera" position="0 0 -30">
             <a-cursor color="white"></a-cursor>
             <!-- <a-animation attribute="rotation"
                 easing="ease-in"
@@ -69,9 +69,8 @@
                 to="0 -2000 -1500"
                 delay="15000"></a-animation> -->
         </a-camera>
-    </a-scene>
 
-    <script src="js/script.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 
 </html>

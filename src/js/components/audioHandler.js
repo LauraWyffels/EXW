@@ -1,7 +1,12 @@
 AFRAME.registerComponent(`audiohandler`, {
+  schema: {
+    soundName: {default: `bombSound`}
+  },
   init() {
     let playing = false;
-    const $audio = document.getElementById(`bombSound`);
+    const data = this.data;
+    const $audio = document.getElementById(`${data.soundName}`);
+
     this.el.addEventListener(`click`, () => {
       if (!playing) {
         $audio.play();
