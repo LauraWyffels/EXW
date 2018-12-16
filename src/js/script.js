@@ -1,15 +1,11 @@
 {
 
-  const handlePopup = () => {
-    const $popup1 = document.getElementById(`popupText1`);
-    setInterval(() => {
-
-
-    }, 10000);
-  };
+  // const handlePopup = () => {
+  //   const $popup1 = document.getElementById(`popupText1`);
+  //   setInterval(() => {
 
   const init = () => {
-    handlePopup();
+    // handlePopup();
   };
 
   init();
