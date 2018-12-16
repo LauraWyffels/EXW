@@ -5,7 +5,6 @@ AFRAME.registerComponent(`disarmbomb`, {
     },
     init() {
         const data = this.data;
-        let playing = false;
         const $audio = document.getElementById(`${data.soundName}`);
 
         // popupText2
