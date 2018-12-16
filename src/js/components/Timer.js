@@ -2,8 +2,7 @@ let gameOver = false;
 
 AFRAME.registerComponent(`timer`, {
     init() {
-        // const randomAmountOfMinutes = Math.floor(Math.random() * (3 - 1)) + 1;
-        const randomAmountOfMinutes = .1;
+        const randomAmountOfMinutes = Math.floor(Math.random() * (3 - 1)) + 1;
         const counter = document.querySelector(`.timer`);
 
         let resterendeTijd = (randomAmountOfMinutes * 60);
@@ -14,11 +13,12 @@ AFRAME.registerComponent(`timer`, {
             const s = Math.floor(resterendeTijd % 60);
             counter.setAttribute(`value`, `${m < 10 ? `0` : ``}${m.toString()}:${s < 10 ? `0` : ``}${s.toString()}`);
 
-            if(resterendeTijd <= 0) {
+            if(resterendeTijd == 0) {
                 gameOver = true;
                 clearInterval();
                 counter.setAttribute(`value`, `00:00`);
                 counter.setAttribute(`template`, `src: #blink`);
+                counter.parentNode.setAttribute(`position`, `3000 3000 3000`);
                 
                 // crash plane
                 const planeParts = [...document.querySelectorAll(`.plane-part`)];
@@ -30,8 +30,7 @@ AFRAME.registerComponent(`timer`, {
                 });
                 
                 // remove all pop-ups
-                [...document.querySelectorAll(`.popup-text`)].forEach(popup => popup.setAttribute(`visible`, `false`));
-                
+                [...document.querySelectorAll(`.popup-text`)].forEach(popup => popup.setAttribute(`visible`, `false`));   
             }
         }, 1000);   
     },
@@ -41,6 +40,7 @@ AFRAME.registerComponent(`timer`, {
             $audio.play();
             const $audio2 = document.getElementById(`crashSound`);
             $audio2.play();
+            gameOver = false;
         }
     }
 });
