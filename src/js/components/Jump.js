@@ -13,6 +13,10 @@ const handleClickJump = () => {
         fallingObjects.forEach(obj => obj.setAttribute(`template`, `src: #walkLeftAnimation`));
         setTimeout(() => {
             fallingObjects.forEach(obj => obj.setAttribute(`template`, `src: #jumpAnimation`));
+            setTimeout(() => {
+                const $audio = document.getElementById(`aaaah`);
+                $audio.play();
+            }, 1000);
         }, 2000)
     }, 5000)
     
