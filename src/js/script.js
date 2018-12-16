@@ -1,12 +1,13 @@
 {
 
-  const handlePopup = () => {
-    const $popup1 = document.getElementById(`popupText1`);
-    setInterval(() => {
+  // const handlePopup = () => {
+  //   const $popup1 = document.getElementById(`popupText1`);
+  //   setInterval(() => {
 
 
-    }, 10000);
-  }
+  //   }, 10000);
+
+  // }
 
   const handleLoadingScreen = () => {
     const $loader = document.querySelector(`.loader`);
@@ -19,7 +20,7 @@
     if (document.querySelector(`.loader`)) {
       handleLoadingScreen();
     }
-    handlePopup();
+    // handlePopup1();
   };
 
   init();
