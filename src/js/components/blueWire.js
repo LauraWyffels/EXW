@@ -1,6 +1,6 @@
 AFRAME.registerComponent(`bluewire`, {
     schema: {
-        visible: { default: `false` }
+        visible: { default: `true` }
     },
     init() {
         const $button = document.querySelector(`.blueWireButton`);

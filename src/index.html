@@ -87,7 +87,7 @@
         </a-assets>
 
         <!-- Audio -->
-        <audio src="assets/sounds/engine.mp3" autoplay="true"></audio>
+        <!-- <audio src="assets/sounds/engine.mp3" autoplay="true"></audio> -->
         <audio id="crashSound" src="assets/sounds/crash.mp3"></audio>
 
         <!-- Basic scenery -->
@@ -110,15 +110,17 @@
                 data-wlduration="1000" data-wlposition="10 0 67" data-wtcduration="5000" data-wtcposition="0 0 74">
             </a-entity>
             <audio id="aaaah" src="assets/sounds/aaaah.mp3"></audio>
-            <a-entity>
+        <a-entity>
 
         <!-- Bomb -->
         <a-entity>
             <a-entity bomb class="bomb falling-object" obj-model="obj: url(assets/objects/bomb.obj); mtl: url(assets/objects/bomb.mtl)"
-                position="0 -5 -20" scale=".04 .04 -.04" data-cduration="3000" data-cposition="5 5 -5"
-                data-crotation="90 180 360" data-jduration="6000" data-jposition="40 4800 -5" data-wfduration="5000"
-                data-wfposition="0 -5 5" data-wlduration="1000" data-wlposition="10 -5 5" data-wtcduration="5000"
-                data-wtcposition="0 -5 13"></a-entity>
+                position="0 -5 -20" scale=".04 .04 -.04"
+                data-cduration="3000" data-cposition="5 5 -5" data-crotation="90 180 360"
+                data-jduration="6000" data-jposition="40 4800 -5" 
+                data-wfduration="5000" data-wfposition="0 -5 5"
+                data-wlduration="1000" data-wlposition="10 -5 5" 
+                data-wtcduration="5000" data-wtcposition="0 -5 13"></a-entity>
             <a-entity id="explosion" position="-7 -8 -15" particle-system="preset: stars; texture: ./assets/images/particle.png;  accelerationSpread: 50 50 50; blending: 2; color: #FFF; dur: 0.5;"></a-entity>
             <audio id="bombSound" src="assets/sounds/explosion.mp3"></audio>
         </a-entity>
