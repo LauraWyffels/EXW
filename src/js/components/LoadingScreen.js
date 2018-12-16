@@ -3,7 +3,7 @@ AFRAME.registerComponent(`loading-screen`, {
     const $el = this.el;  // = box or sphere or...
     setTimeout(() => {
       $el.parentElement.removeChild($el);
-    }, 10000);
+    }, 15000);
   }   
 });
   

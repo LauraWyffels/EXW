@@ -4,7 +4,6 @@ AFRAME.registerComponent(`scenehandler`, {
       if (window.location = `pages/index.html`) {
         window.location = `pages/disarmBomb.html`;
       }
-
     });
   }
 });
