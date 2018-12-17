@@ -1,11 +1,18 @@
 {
 
-  // const handlePopup = () => {
-  //   const $popup1 = document.getElementById(`popupText1`);
-  //   setInterval(() => {
+  // const handleAudio = () => {
+  //   const AudioContext = window.AudioContext || window.webkitAudioContext;
+  //   const context = new AudioContext();
+  //   console.log(`test`);
+  // }
+
+  
+
+  
 
   const init = () => {
-    // handlePopup();
+    // handleAudio();
+    // addSky();
   };
 
   init();
