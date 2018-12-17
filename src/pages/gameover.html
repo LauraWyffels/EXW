@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>An Extraordinary Airplane Flight</title>
+
+    <link href='../css/reset.css' rel='stylesheet' type='text/css'>
+    <link href='../css/style.css' rel='stylesheet' type='text/css'>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component/dist/aframe-template-component.min.js"></script>
+
+    <!-- Custom A-frame components -->
+    <script src="../js/components/ChangeColorOnHover.js"></script>
+    <script src="../js/components/Restart.js"></script>
+</head>
+
+<body>
+    <a-scene>
+        <!-- Basic scenery -->
+        <a-sky color="black"></a-sky>
+
+        <a-entity>
+            <a-plane width="1.5" height="0.5" position="0 0 -2" color="black">
+                <a-text value="Game Over" align="center">
+                    <a-animation attribute="opacity" dur="3000" to="1"></a-animation>
+                    <a-animation attribute="scale" dur="3000" to="1.2 1.2 1.2"></a-animation>
+                </a-text>
+            </a-plane>
+            
+            <a-plane restart class="goback" width="1" height="0.5" color="black" change-color-on-hover="color: red" position="0 -.5 -2">
+                <a-text color="white" align="center" value="Fly again" wrap-count="65">
+                    <a-animation attribute="opacity" dur="3000" to="1"></a-animation>
+                    <a-animation attribute="scale" dur="3000" to="1.2 1.2 1.2"></a-animation>
+                </a-text>
+            </a-plane>  
+        </a-entity>
+
+        <!-- This should always be placed at the end of the scene-->
+        <a-camera class="camera">
+            <a-cursor color="white"></a-cursor>
+        </a-camera>
+    </a-scene>
+</body>

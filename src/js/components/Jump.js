@@ -24,4 +24,9 @@ const handleClickJump = () => {
 
     // hide timer
     document.querySelector(`.timer`).parentNode.setAttribute(`position`, `3000 3000 3000`);
+
+    // End game
+    setTimeout(() => {
+        window.location = `pages/gameover.html`;
+    }, 15000);
 };

@@ -24,5 +24,10 @@ const handleClickCrash = () => {
 
   // remove all pop-ups
   [...document.querySelectorAll(`.popup-text`)].forEach(popup => popup.setAttribute(`visible`, `false`));
+
+  // End game
+  setTimeout(() => {
+    window.location = `pages/gameover.html`;
+}, 15000);
 };
 

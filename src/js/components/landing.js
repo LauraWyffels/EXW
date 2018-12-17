@@ -13,5 +13,10 @@ const handleClickLanding = () => {
     [...planeParts, sky, bomb].forEach(part => {
         part.setAttribute(`template`, `src: #landAnimation`);
     });
+
+    // End game
+    setTimeout(() => {
+        window.location = `pages/landed.html`;
+    }, 10000);
 };
 
